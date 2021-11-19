@@ -1,0 +1,141 @@
+.main-content {
+    margin: 40px 20px;
+    display: flex;
+}   
+
+.main-content main {
+    width: 75%;
+    max-height: 800px;
+    overflow: auto;
+    background:linear-gradient(0deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url('../images/background.png');
+}
+
+.main-content aside {
+    width: 25%;
+    padding-left: 30px;
+    position: relative;
+}
+
+
+.main-content .img-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.img-card {
+    width: 280px;
+    margin: 20px;
+    box-shadow: 0px 0px 13px 3px black;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.img-card .image{
+    max-width: 100%;
+    width: 100%;
+}
+
+.img-card img {
+    width: 100%;
+    height: auto;
+}
+
+
+
+.img-card h3 {
+    padding-left: 10px;
+}
+
+.img-card:hover {
+    max-width: 100%;
+    transform: scale(1.1);
+    transition: 0.4s;
+   
+}
+
+.main-content aside ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.main-content aside li {
+    font-size: 30px;
+    
+}
+
+.main-content aside li a:hover {
+    border: 3px solid rgb(73, 191, 76);
+    padding: 2px 4px; 
+    border-radius: 10px;
+    
+}
+
+.main-content aside .top-users a {
+    text-decoration: none;
+    color: rgb(71, 71, 71);
+    font-size: 35px;
+    padding-left: 10px;
+}
+
+.top-users {
+    position: relative;
+    z-index: 2;
+}
+
+.main-content aside h1 {
+    font-size: 32px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.top-commented {
+    position: relative;
+    margin-top: 100px;
+    z-index: 3;
+}
+
+.top-commented-img {
+    width: 300px;
+}
+
+.top-commented-img {
+    width: 100%;
+    height: auto;
+    box-shadow: 0px 0px 13px 10px rgb(73, 191, 76);
+    transition: 0.4s;
+}
+
+.top-commented .top-img {
+    width: 100%;
+}
+
+.top-commented img {
+    width: 100%;
+}
+
+.top-commented h3 {
+    margin: 0;
+    padding: 10px;
+}
+
+.top-commented-img:hover{
+    transform: scale(1.1);
+}
+
+.top-commented a {
+    text-decoration: none;
+    color: rgb(71, 71, 71);
+}
+
+.photographer1 {
+    width: 250px;
+    z-index: 1;
+    position: absolute;
+    top: 135px;
+    right: -30px;
+}
+
+.photographer1 img {
+    width: 100%;
+    
+}

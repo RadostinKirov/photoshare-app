@@ -1,0 +1,22 @@
+footer {
+    font-style: italic;
+    display: flex;
+    justify-content: space-around;
+}
+
+footer .author-name{
+    font-weight: bold;
+    color: rgb(73, 191, 76);
+}
+
+footer .author {
+    align-self: center;
+}
+
+footer .contacts ul {
+    list-style: none;
+}
+
+footer .contacts i {
+    margin-right: 10px;
+}
