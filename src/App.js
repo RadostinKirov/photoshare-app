@@ -6,6 +6,7 @@ import Register from './components/User/Register/Register';
 import Profile from './components/User/Profile/Profile';
 import Details from './components/Photo/Details/Details';
 import Footer from './components/Footer/Footer';
+import Page404 from './components/Page404/Page404';
 
 
 function App() {
@@ -28,6 +29,8 @@ function App() {
 
     <Details />
 
+    <Page404 />
+   
     <Footer />
     
     </div>
