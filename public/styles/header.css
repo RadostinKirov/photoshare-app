@@ -18,7 +18,7 @@ header .user , header .guest {
 }
 
 header li {
-    
+
     font-size: 22px;
     
 }
@@ -97,4 +97,19 @@ header li a:hover {
     background-color: rgb(71, 71, 71);
     border: 1px solid orange;
     transition: 0.8s;   
+}
+
+header .hello-user {
+    border: 3px solid white;
+    padding: 2px 4px; 
+    border-radius: 10px; 
+}
+
+header .hello-user:hover {
+border-color: rgb(73, 191, 76);
+text-decoration: none;
+color: rgb(71, 71, 71);
+background-color: white;
+padding: 2px 4px;
+transition: 0.3s;
 }

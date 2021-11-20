@@ -13,6 +13,7 @@ const Header = () => {
                 <li><a href="#">REGISTER</a></li>
             </div>
             <div className="user">
+                <li><a href="#" class="hello-user">hello, IvanIvanov</a></li>
                 <li><a href="#">CATALOG</a></li>
                 <li><a href="#">PROFILE</a></li>
                 <li><a href="#">ADD PHOTO</a></li>
