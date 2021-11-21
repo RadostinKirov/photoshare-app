@@ -10,12 +10,17 @@ import Page404 from './components/Page404/Page404';
 
 
 function App() {
+
+  const navigationChangeHandler = (path) => {
+    console.log(path);
+  }
+
+
   return (
-  
-<body>
+ <body>
     <div className="main-container">
 
-    <Header /> 
+    <Header navigationChangeHandler={navigationChangeHandler} /> 
 
     <Home />    
 
