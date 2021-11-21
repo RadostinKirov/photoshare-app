@@ -17,9 +17,13 @@ const Home = () => {
             <main>
                 <div className="img-container">
 
-                {photos.map(x => <PhotoCard game={x} />)}
-               
-                    
+                    {
+                        photos.length > 0
+                            ? photos.map(x => <PhotoCard key={x._id} game={x} />)
+                            : <h4 className='no-photos'>No photos yet</h4>
+                    }
+
+
                 </div>
             </main>
             <aside>
