@@ -30,17 +30,17 @@ function App() {
   }
 
   return (
-    <body>
-      <div className="main-container">
 
-        <Header navigationChangeHandler={navigationChangeHandler} />
+    <div className="main-container">
 
-        {routes[page] || <Page404 />}
+      <Header navigationChangeHandler={navigationChangeHandler} />
 
-        <Footer />
+      {routes[page] || <Page404 />}
 
-      </div>
-    </body>
+      <Footer />
+
+    </div>
+
   );
 }
 

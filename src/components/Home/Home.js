@@ -1,6 +1,18 @@
+import { useState, useEffect } from 'react';
+
 const Home = () => {
+
+    const [photos, setPhotos] = useState([]);
+
+    useEffect(async () => {
+        const response = await fetch('http://localhost:3030/');
+        const data = await response.json();
+        console.log(data);
+        setPhotos(data);
+    }, []);
+
     return (
-    <div className="main-content">
+        <div className="main-content">
             <main>
                 <div className="img-container">
 
@@ -150,6 +162,6 @@ const Home = () => {
         </div>
     )
 }
-    
+
 
 export default Home;
