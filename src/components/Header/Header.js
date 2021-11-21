@@ -1,8 +1,8 @@
-const Header = ({navigationChangeHandler}) => {
-  const  onHeaderClick = (e) => {
-      e.preventDefault();
-      let url = new URL(e.target.href);
-     navigationChangeHandler(url.pathname) ; 
+const Header = ({ navigationChangeHandler }) => {
+    const onHeaderClick = (e) => {
+        e.preventDefault();
+        let url = new URL(e.target.href);
+        navigationChangeHandler(url.pathname);
     }
 
 
@@ -10,7 +10,7 @@ const Header = ({navigationChangeHandler}) => {
     return (
         <header onClick={onHeaderClick}>
             <div className="logo">
-                <a href="">
+                <a href="/home">
                     <h2><span className="logo-text">PHOTO</span>SHARE</h2>
                 </a>
             </div>
@@ -22,7 +22,7 @@ const Header = ({navigationChangeHandler}) => {
                         <li><a href="/register">REGISTER</a></li>
                     </div>
                     <div className="user">
-                        <li><a href="#" class="hello-user">hello, IvanIvanov</a></li>
+                        <li><a href="/profile" className="hello-user">hello, IvanIvanov</a></li>
                         <li><a href="/catalog">CATALOG</a></li>
                         <li><a href="/profile">PROFILE</a></li>
                         <li><a href="/create">ADD PHOTO</a></li>

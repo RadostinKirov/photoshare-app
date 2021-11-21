@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
 import Create from './components/Photo/Create/Create';
@@ -11,35 +13,31 @@ import Page404 from './components/Page404/Page404';
 
 function App() {
 
+  const [page, setPage] = useState('/home');
+
   const navigationChangeHandler = (path) => {
-    console.log(path);
+    setPage(path);
   }
 
+  const routes = {
+    '/home': < Home />,
+    '/create': < Create />,
+    '/login': < Login />,
+    '/register': < Register />
+  }
 
   return (
- <body>
-    <div className="main-container">
+    <body>
+      <div className="main-container">
 
-    <Header navigationChangeHandler={navigationChangeHandler} /> 
+        <Header navigationChangeHandler={navigationChangeHandler} />
 
-    <Home />    
+        {routes[page] || <Page404 />}
 
-    <Create />    
+        <Footer />
 
-    <Login />    
-
-    <Register />    
-
-    <Profile />    
-
-    <Details />
-
-    <Page404 />
-   
-    <Footer />
-    
-    </div>
-</body>
+      </div>
+    </body>
   );
 }
 
