@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import PhotoCard from './PhotoCard';
 
 const Home = () => {
 
@@ -16,113 +17,9 @@ const Home = () => {
             <main>
                 <div className="img-container">
 
-                    <section className="img-card">
-                        <div className="image">
-                            <a href="#">
-                                <img src="https://static.posters.cz/image/750webp/78441.webp" alt="" />
-                            </a>
-                        </div>
-                        <h3>waterfall</h3>
-                    </section>
-
-                    <section className="img-card">
-                        <div className="image">
-                            <a href="#">
-                                <img src="https://static.posters.cz/image/750webp/78441.webp" alt="" />
-                            </a>
-                        </div>
-                        <h3>waterfall</h3>
-                    </section>
-
-                    <section className="img-card">
-                        <div className="image">
-                            <a href="#">
-                                <img src="https://static.posters.cz/image/750webp/78441.webp" alt="" />
-                            </a>
-                        </div>
-                        <h3>waterfall</h3>
-                    </section>
-
-                    <section className="img-card">
-                        <div className="image">
-                            <a href="#">
-                                <img src="https://static.posters.cz/image/750webp/78441.webp" alt="" />
-                            </a>
-                        </div>
-                        <h3>waterfall</h3>
-                    </section>
-
-                    <section className="img-card">
-                        <div className="image">
-                            <a href="#">
-                                <img src="https://static.posters.cz/image/750webp/78441.webp" alt="" />
-                            </a>
-                        </div>
-                        <h3>waterfall</h3>
-                    </section>
-
-                    <section className="img-card">
-                        <div className="image">
-                            <a href="#">
-                                <img src="https://static.posters.cz/image/750webp/78441.webp" alt="" />
-                            </a>
-                        </div>
-                        <h3>waterfall</h3>
-                    </section>
-
-                    <section className="img-card">
-                        <div className="image">
-                            <a href="#">
-                                <img src="https://static.posters.cz/image/750webp/78441.webp" alt="" />
-                            </a>
-                        </div>
-                        <h3>waterfall</h3>
-                    </section>
-
-                    <section className="img-card">
-                        <div className="image">
-                            <a href="#">
-                                <img src="https://static.posters.cz/image/750webp/78441.webp" alt="" />
-                            </a>
-                        </div>
-                        <h3>waterfall</h3>
-                    </section>
-
-                    <section className="img-card">
-                        <div className="image">
-                            <a href="#">
-                                <img src="https://static.posters.cz/image/750webp/78441.webp" alt="" />
-                            </a>
-                        </div>
-                        <h3>waterfall</h3>
-                    </section>
-
-                    <section className="img-card">
-                        <div className="image">
-                            <a href="#">
-                                <img src="https://static.posters.cz/image/750webp/78441.webp" alt="" />
-                            </a>
-                        </div>
-                        <h3>waterfall</h3>
-                    </section>
-
-                    <section className="img-card">
-                        <div className="image">
-                            <a href="#">
-                                <img src="https://static.posters.cz/image/750webp/78441.webp" alt="" />
-                            </a>
-                        </div>
-                        <h3>waterfall</h3>
-                    </section>
-
-                    <section className="img-card">
-                        <div className="image">
-                            <a href="#">
-                                <img src="https://static.posters.cz/image/750webp/78441.webp" alt="" />
-                            </a>
-                        </div>
-                        <h3>waterfall</h3>
-                    </section>
+                {photos.map(x => <PhotoCard game={x} />)}
+               
+                    
                 </div>
             </main>
             <aside>
