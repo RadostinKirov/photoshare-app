@@ -1,6 +1,6 @@
 const Page404 = () => {
     return (
-        <div class="page404">
+        <div className="page404">
             <section>
                 <div className="image">
                     <img src="./images/404-sad.png" />

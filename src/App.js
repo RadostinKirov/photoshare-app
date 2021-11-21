@@ -16,6 +16,7 @@ function App() {
   const [page, setPage] = useState('/home');
 
   const navigationChangeHandler = (path) => {
+    console.log(path);
     setPage(path);
   }
 
@@ -23,7 +24,9 @@ function App() {
     '/home': < Home />,
     '/create': < Create />,
     '/login': < Login />,
-    '/register': < Register />
+    '/register': < Register />,
+    '/catalog': < Home />,
+    '/profile': < Profile />
   }
 
   return (
