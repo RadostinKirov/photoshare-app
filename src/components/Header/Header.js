@@ -1,4 +1,5 @@
 const Header = ({ navigationChangeHandler }) => {
+    
     const onHeaderClick = (e) => {
         e.preventDefault();
         let url = new URL(e.target.href);

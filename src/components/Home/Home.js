@@ -1,7 +1,14 @@
 import { useState, useEffect } from 'react';
 import PhotoCard from './PhotoCard';
 
-const Home = () => {
+const Home = (
+    { navigationChangeHandler },
+) => {
+
+    const onClickHome = () => {
+        navigationChangeHandler('home test');
+    }
+
 
     const [photos, setPhotos] = useState([]);
 
@@ -13,13 +20,13 @@ const Home = () => {
     }, []);
 
     return (
-        <div className="main-content">
+        <div onClick={onClickHome} className="main-content">
             <main>
                 <div className="img-container">
 
                     {
                         photos.length > 0
-                            ? photos.map(x => <PhotoCard key={x._id} game={x} />)
+                            ? photos.map(x => <PhotoCard key={x._id} navigationChangeHandler={navigationChangeHandler} game={x} />)
                             : <h4 className='no-photos'>No photos yet</h4>
                     }
 

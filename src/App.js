@@ -13,19 +13,20 @@ import Page404 from './components/Page404/Page404';
 
 function App() {
 
-  const [page, setPage] = useState('/home');
-
   const navigationChangeHandler = (path) => {
     console.log(path);
     setPage(path);
   }
+
+  const [page, setPage] = useState('/home');
+
 
   const routes = {
     '/home': < Home />,
     '/create': < Create />,
     '/login': < Login />,
     '/register': < Register />,
-    '/catalog': < Home />,
+    '/catalog': < Home  />,
     '/profile': < Profile />
   }
 

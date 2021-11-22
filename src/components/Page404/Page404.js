@@ -6,7 +6,7 @@ const Page404 = () => {
                     <img src="./images/404-sad.png" />
                 </div>
                 <div>
-                    <a class="btn-home" >Home</a>
+                    <a className="btn-home" >Home</a>
                 </div>
             </section>
         </div>

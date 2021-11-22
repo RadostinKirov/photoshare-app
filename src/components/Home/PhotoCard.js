@@ -1,9 +1,18 @@
-const PhotoCard = ({game}) => {
-    console.log(game.imageUrl)
+const PhotoCard = ({
+    game,
+    navigationChangeHandler
+}) => {
+
+    const onDetailsClick = (e) => {
+        e.preventDefault();
+        console.log('test photocard')
+        navigationChangeHandler(`test`);
+       
+    }
     return (
         <section className="img-card">
             <div className="image">
-                <a href="#">
+                <a onClick={onDetailsClick} href={game._id}>
                     <img src={game.imageUrl} alt="" />
                 </a>
             </div>
