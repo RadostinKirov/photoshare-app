@@ -20,15 +20,25 @@ function App() {
 
   const [page, setPage] = useState('/home');
 
+  const router = (path) => {
+    let pathnames = path.split('/');
+    console.log('pathnames -> ', pathnames)
+    let rootPath = pathnames[1];
+    let argument = pathnames[2];
 
-  const routes = {
-    '/home': < Home />,
-    '/create': < Create />,
-    '/login': < Login />,
-    '/register': < Register />,
-    '/catalog': < Home  />,
-    '/profile': < Profile />
+    const routes = {
+      'home': < Home navigationChangeHandler={navigationChangeHandler} />,
+      'create': < Create />,
+      'login': < Login />,
+      'register': < Register />,
+      'catalog': < Home navigationChangeHandler={navigationChangeHandler} />,
+      'profile': < Profile />,
+      'details': < Details id={argument}/>,
+    }
+    return routes[rootPath]
   }
+
+
 
   return (
 
@@ -36,7 +46,7 @@ function App() {
 
       <Header navigationChangeHandler={navigationChangeHandler} />
 
-      {routes[page] || <Page404 />}
+      {router(page) || <Page404 />}
 
       <Footer />
 

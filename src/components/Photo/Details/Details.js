@@ -1,22 +1,35 @@
-const Details = () => {
+import { useEffect, useState } from "react/cjs/react.development";
+
+
+const Details = ({id}) => {
+console.log(id)
+    const [photo, setPhoto] = useState([]);
+
+    useEffect(async () => {
+        console.log('in useEfect -> ID -> ', id);
+        const response = await fetch(`http://localhost:3030/photo/details/${id}` );
+        const data = await response.json();
+        console.log('console log data -> ',data);
+        setPhoto(data);
+    }, [])
+
     return (
         <div className="details">
             <section className="image">
-                <h1>Waterfall</h1>
+                <h1>{photo.title}</h1>
                 <h3 className="author-container">author: <span className="author-name">IvanIvanov</span></h3>
                 <div className="image-container">
-                    <img src="https://static.posters.cz/image/750webp/78441.webp" alt="" />
+                    <img src={photo.imageUrl} alt="" />
 
                     <a href="" className="edit-btn"><i className="fas fa-edit"></i></a>
                     <a href="" className="delete-btn"><i className="fas fa-trash-alt"></i></a>
 
                 </div>
 
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae similique at expedita quae
-                    consequatur perspiciatis veritatis corporis ut est minus.</p>
+                <p>{photo.description}</p>
                 <div className="likes-container">
                     <a href=""><i className="fas fa-thumbs-up"></i></a>
-                    <span>5</span>
+                    <span>{photo.likes}</span>
                 </div>
 
                 <section className="comments">

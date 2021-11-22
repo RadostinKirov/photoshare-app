@@ -5,9 +5,6 @@ const Home = (
     { navigationChangeHandler },
 ) => {
 
-    const onClickHome = () => {
-        navigationChangeHandler('home test');
-    }
 
 
     const [photos, setPhotos] = useState([]);
@@ -20,7 +17,7 @@ const Home = (
     }, []);
 
     return (
-        <div onClick={onClickHome} className="main-content">
+        <div className="main-content">
             <main>
                 <div className="img-container">
 

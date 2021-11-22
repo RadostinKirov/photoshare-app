@@ -5,8 +5,7 @@ const PhotoCard = ({
 
     const onDetailsClick = (e) => {
         e.preventDefault();
-        console.log('test photocard')
-        navigationChangeHandler(`test`);
+        navigationChangeHandler(`/details/${game._id}`);
        
     }
     return (
