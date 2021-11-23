@@ -22,7 +22,6 @@ function App() {
 
   const router = (path) => {
     let pathnames = path.split('/');
-    console.log('pathnames -> ', pathnames)
     let rootPath = pathnames[1];
     let argument = pathnames[2];
 
