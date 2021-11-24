@@ -1,3 +1,5 @@
+import { createUser } from '../../../service/auth'
+
 const Register = () => {
 
     const onSubmitHandler = (e) => {
@@ -5,26 +7,8 @@ const Register = () => {
         let data = new FormData(e.currentTarget);
         const user = data.get('username');
         const pass = data.get('password');
-        const userData = { "username": user, "password": pass};
-      
-        fetch('http://localhost:3030/auth/register', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(userData),
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-
-
-
-
+        const userData = { "username": user, "password": pass };
+        createUser(userData);
     }
 
     return (
