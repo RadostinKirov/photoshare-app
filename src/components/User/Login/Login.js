@@ -1,6 +1,8 @@
-import {getUser} from '../../../service/auth'
+import {getUser} from '../../../service/auth';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+    const navigate = useNavigate();
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
@@ -8,8 +10,14 @@ const Login = () => {
         const user = data.get('username');
         const pass = data.get('password');
         const userData = { "username": user, "password": pass };
-        getUser(userData);
-    }
+       try {
+            getUser(userData);
+            navigate('/');
+       }catch
+       {
+           console.log('Login error')
+       }
+        }
 
     return (
         <div className="login">

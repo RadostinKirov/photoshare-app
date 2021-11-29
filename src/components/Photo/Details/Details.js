@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react/cjs/react.development";
+import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 
-
-const Details = ({id}) => {
-console.log(id)
+const Details = () => {
+    const {id} = useParams(); 
+console.log("photoInfo -> ", id);
     const [photo, setPhoto] = useState([]);
 
     useEffect(async () => {

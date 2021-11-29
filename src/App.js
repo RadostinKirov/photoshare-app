@@ -56,6 +56,8 @@ function App() {
         <Route path="create" element={<Create/>} />
         <Route path="login" element={<Login/>} />
         <Route path="register" element={<Register/>} />
+        <Route path="details/:id" element={<Details/>} />
+
         </Routes>
 
       <Footer />
