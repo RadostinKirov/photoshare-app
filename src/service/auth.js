@@ -10,7 +10,8 @@ export function createUser(data) {
         .then(response => response.json())
         .then(data => {
             console.log('Success:', data);
-            localStorage.setItem('username', data._id)
+            localStorage
+            .setItem('username', data._id)
         })
         .catch((error) => {
             console.error('Error:', error);

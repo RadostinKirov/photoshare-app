@@ -8,6 +8,9 @@ const PhotoCard = ({
         navigationChangeHandler(`/details/${game._id}`);
        
     }
+
+
+    
     return (
         <section className="img-card">
             <div className="image">
