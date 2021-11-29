@@ -6,10 +6,10 @@ import Home from './components/Home/Home';
 import Create from './components/Photo/Create/Create';
 import Login from './components/User/Login/Login';
 import Register from './components/User/Register/Register';
-import Profile from './components/User/Profile/Profile';
 import Details from './components/Photo/Details/Details';
 import Edit from './components/Photo/Edit/Edit';
 import Footer from './components/Footer/Footer';
+import Profile from './components/User/Profile/Profile';
 import Page404 from './components/Page404/Page404';
 
 
@@ -51,14 +51,15 @@ function App() {
       <Header />
 
       <Routes>
-        <Route path="/" element={<Home/>} />
-        <Route path="home" element={<Home/>} />
-        <Route path="create" element={<Create/>} />
-        <Route path="login" element={<Login/>} />
-        <Route path="register" element={<Register/>} />
-        <Route path="details/:id" element={<Details/>} />
+        <Route path="/" element={<Home />} />
+        <Route path="home" element={<Home />} />
+        <Route path="create" element={<Create />} />
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
+        <Route path="details/:id" element={<Details />} />
+        <Route path="edit/:id" element={<Edit />} />
 
-        </Routes>
+      </Routes>
 
       <Footer />
 

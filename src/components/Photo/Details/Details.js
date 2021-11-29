@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Details = () => {
     const {id} = useParams(); 
@@ -22,8 +23,8 @@ console.log("photoInfo -> ", id);
                 <div className="image-container">
                     <img src={photo.imageUrl} alt="" />
 
-                    <a href="" className="edit-btn"><i className="fas fa-edit"></i></a>
-                    <a href="" className="delete-btn"><i className="fas fa-trash-alt"></i></a>
+                    <Link to={`/edit/${id}`} className="edit-btn"><i className="fas fa-edit"></i></Link>
+                    <Link to="" className="delete-btn"><i className="fas fa-trash-alt"></i></Link>
 
                 </div>
 

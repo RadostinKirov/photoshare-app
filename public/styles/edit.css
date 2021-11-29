@@ -1,9 +1,9 @@
 
-.create {
+.edit {
     margin: 140px auto;
 }
 
-.create-form{
+.edit-form{
     background:linear-gradient(0deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url('../images/background.png');
     position: relative;
     z-index: 2;
@@ -16,11 +16,11 @@
     border-radius: 10px;
 }
  
-.create-form h1 {
+.edit-form h1 {
     text-align: center;
 }
 
-.create-form input, .create-form textarea {
+.edit-form input, .edit-form textarea {
     position: relative;
     z-index: 2;
     margin: 20px 0;
@@ -29,7 +29,7 @@
     padding-left: 10px;
 }
 
-.create-form .add-btn {
+.edit-form .add-btn {
     width: 180px;
     margin: auto;
     background-color: rgb(73, 191,76);
@@ -43,13 +43,13 @@
     border: 4px solid rgb(73, 191, 76);
 }
 
-.create-form .add-btn:hover{
+.edit-form .add-btn:hover{
     color: black;
     border-color: black;
     transition: 0.8s;
 }
 
-.create-form .photographer-right {
+.edit-form .photographer-right {
     width: 300px;
     position: absolute;
     z-index: 0;
@@ -57,16 +57,16 @@
     right: -315px;
 }
 
-.create-form img {
+.edit-form img {
     width: 100%;
 }
 
-.create-form h1 {
+.edit-form h1 {
     position: relative;
     z-index: 2;
 }
 
-.create-form .photographer-left {
+.edit-form .photographer-left {
     width: 300px;
     position: absolute;
     z-index: 0;
