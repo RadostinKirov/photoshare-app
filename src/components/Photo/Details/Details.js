@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { getPhogoById } from "../../../service/photo";
 
 const Details = () => {
     const { id } = useParams();
@@ -9,9 +10,7 @@ const Details = () => {
 
     useEffect(async () => {
         console.log('in useEfect -> ID -> ', id);
-        const response = await fetch(`http://localhost:3030/photo/details/${id}`);
-        const data = await response.json();
-        console.log('console log data -> ', data);
+        const data = await getPhogoById(id);
         setPhoto(data);
     }, [])
 

@@ -6,13 +6,22 @@ export async function getAllPhotos() {
         headers: {
             'Content-Type': 'application/json',
         },
-
-   
     })
     let data = response.json();
 
     return data;
 
+}
+
+export async function getPhogoById(id){
+    const response = await fetch(`http://localhost:3030/photo/details/${id}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
+    const data = response.json();
+    return data;
 }
 
 

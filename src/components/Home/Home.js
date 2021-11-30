@@ -3,9 +3,8 @@ import { getAllPhotos } from '../../service/photo';
 import PhotoCard from './PhotoCard';
 
 const Home = () => {
-
     const [photos, setPhotos] = useState([]);
-    
+
     useEffect(async () => {
         let allPhotos = await getAllPhotos();
         setPhotos(allPhotos);
@@ -18,7 +17,7 @@ const Home = () => {
 
                     {
                         photos.length > 0
-                            ? photos.map(x => <PhotoCard key={x._id}  game={x} />)
+                            ? photos.map(x => <PhotoCard key={x._id} game={x} />)
                             : <h4 className='no-photos'>No photos yet</h4>
                     }
 
