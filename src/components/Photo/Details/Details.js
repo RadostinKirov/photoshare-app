@@ -3,15 +3,15 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Details = () => {
-    const {id} = useParams(); 
-console.log("photoInfo -> ", id);
+    const { id } = useParams();
+    console.log("photoInfo -> ", id);
     const [photo, setPhoto] = useState([]);
 
     useEffect(async () => {
         console.log('in useEfect -> ID -> ', id);
-        const response = await fetch(`http://localhost:3030/photo/details/${id}` );
+        const response = await fetch(`http://localhost:3030/photo/details/${id}`);
         const data = await response.json();
-        console.log('console log data -> ',data);
+        console.log('console log data -> ', data);
         setPhoto(data);
     }, [])
 

@@ -1,19 +1,14 @@
 import { useState, useEffect } from 'react';
+import { getAllPhotos } from '../../service/photo';
 import PhotoCard from './PhotoCard';
 
-const Home = (
-    { navigationChangeHandler },
-) => {
-
-
+const Home = () => {
 
     const [photos, setPhotos] = useState([]);
-
+    
     useEffect(async () => {
-        const response = await fetch('http://localhost:3030/');
-        const data = await response.json();
-        console.log(data);
-        setPhotos(data);
+        let allPhotos = await getAllPhotos();
+        setPhotos(allPhotos);
     }, []);
 
     return (
@@ -23,7 +18,7 @@ const Home = (
 
                     {
                         photos.length > 0
-                            ? photos.map(x => <PhotoCard key={x._id} navigationChangeHandler={navigationChangeHandler} game={x} />)
+                            ? photos.map(x => <PhotoCard key={x._id}  game={x} />)
                             : <h4 className='no-photos'>No photos yet</h4>
                     }
 
