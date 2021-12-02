@@ -1,9 +1,10 @@
 import { useParams, Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-
+import { useState, useEffect, useContext } from "react";
+import AuthContext from "../../../contexts/AuthContext";
 import { getPhogoById } from "../../../service/photo";
 
 const Details = () => {
+    const { userInfo } = useContext(AuthContext);
     const { id } = useParams();
     console.log("photoInfo -> ", id);
     const [photo, setPhoto] = useState([]);
@@ -18,7 +19,7 @@ const Details = () => {
         <div className="details">
             <section className="image">
                 <h1>{photo.title}</h1>
-                <h3 className="author-container">author: <span className="author-name">IvanIvanov</span></h3>
+                <h3 className="author-container">author: <span className="author-name">{userInfo.username}</span></h3>
                 <div className="image-container">
                     <img src={photo.imageUrl} alt="" />
 
