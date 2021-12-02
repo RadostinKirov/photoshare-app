@@ -1,23 +1,28 @@
-import {getUser} from '../../../service/auth';
+import { getUser } from '../../../service/auth';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 const Login = () => {
     const navigate = useNavigate();
+    const [user, setUser] = useState({});
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
         let data = new FormData(e.currentTarget);
-        const user = data.get('username');
-        const pass = data.get('password');
-        const userData = { "username": user, "password": pass };
-       try {
-            getUser(userData);
+        const userForm = data.get('username');
+        const passForm = data.get('password');
+        const userFormData = { "username": userForm, "password": passForm };
+        
+        getUser(userFormData)
+        .then(res => {
+            setUser(res);
+            console.log('user -> ', user);
             navigate('/');
-       }catch
-       {
-           console.log('Login error')
-       }
-        }
+        });
+      
+    
+    
+    }
 
     return (
         <div className="login">

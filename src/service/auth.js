@@ -11,26 +11,28 @@ export function createUser(data) {
         .then(data => {
             console.log('Success:', data);
             localStorage
-            .setItem('username', data._id)
+                .setItem('username', data._id)
         })
         .catch((error) => {
             console.error('Error:', error);
         });
 }
 
-export function getUser(data){
-    fetch('http://localhost:3030/auth/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Success:', data);
+export async function getUser(data) {
+    try {
+        const res = await fetch('http://localhost:3030/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
         })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
+
+        const resData = await res.json();
+        return resData;
+    }
+    catch (error) {
+        console.error('Error:', error);
+        return error;
+    };
 }

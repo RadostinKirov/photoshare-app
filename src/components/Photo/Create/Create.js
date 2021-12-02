@@ -1,6 +1,8 @@
 import { createPhoto } from '../../../service/photo'
-
+import { useNavigate } from 'react-router-dom';
 const Create = () => {
+    const navigate = useNavigate();
+
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
@@ -10,7 +12,8 @@ const Create = () => {
         const imageUrl = data.get('imageUrl');
         const owner = '619d4b563455f930e0994271'
         const photoData = { title, description, imageUrl, owner };
-        createPhoto(photoData);
+        createPhoto(photoData)
+            .then(navigate('/'));
     }
 
     return (
