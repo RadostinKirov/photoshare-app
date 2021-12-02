@@ -8,10 +8,10 @@ const Details = () => {
     console.log("photoInfo -> ", id);
     const [photo, setPhoto] = useState([]);
 
-    useEffect(async () => {
+    useEffect(() => {
+        getPhogoById(id)
+            .then(result => setPhoto(result))
         console.log('in useEfect -> ID -> ', id);
-        const data = await getPhogoById(id);
-        setPhoto(data);
     }, [])
 
     return (

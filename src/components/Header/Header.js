@@ -31,8 +31,8 @@ const Header = ({ navigationChangeHandler }) => {
                     <p>to share your photos!</p>
                 </div>
                 <div className="header-buttons">
-                    <a href="#">LOGIN</a>
-                    <a href="#">REGISTER</a>
+                    <Link to="/login">LOGIN</Link>
+                    <Link to="/register">REGISTER</Link>
                 </div>
             </div>
         </header>

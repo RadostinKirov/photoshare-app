@@ -5,9 +5,11 @@ import PhotoCard from './PhotoCard';
 const Home = () => {
     const [photos, setPhotos] = useState([]);
 
-    useEffect(async () => {
-        let allPhotos = await getAllPhotos();
-        setPhotos(allPhotos);
+    useEffect(() => {
+        
+        getAllPhotos()
+            .then(result => setPhotos(result))
+        let allPhotos = getAllPhotos();
     }, []);
 
     return (

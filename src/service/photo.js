@@ -7,8 +7,8 @@ export async function getAllPhotos() {
             'Content-Type': 'application/json',
         },
     })
-    let data = response.json();
-
+    let data =await  response.json();
+     console.log(data)
     return data;
 
 }
@@ -25,21 +25,38 @@ export async function getPhogoById(id){
 }
 
 
-export function createPhoto(data) {
-    fetch('http://localhost:3030/photo/create', {
+export async function createPhoto(data) {
+    const resData = await fetch('http://localhost:3030/photo/create', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
-    })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Success:', data);
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
+    });
 
+    const result = resData.json();
+    if(result.status == 'ok'){
+
+    }else {
+        throw result;
+    }
 }
+
+// export function createPhoto(data) {
+//     fetch('http://localhost:3030/photo/create', {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify(data),
+//     })
+//         .then(response => response.json())
+//         .then(data => {
+//             console.log('Success:', data);
+//         })
+//         .catch((error) => {
+//             console.error('Error:', error);
+//         });
+
+// }
 
