@@ -1,6 +1,6 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+
 import { getPhogoById } from "../../../service/photo";
 
 const Details = () => {
@@ -29,7 +29,7 @@ const Details = () => {
 
                 <p>{photo.description}</p>
                 <div className="likes-container">
-                    <a href=""><i className="fas fa-thumbs-up"></i></a>
+                    <Link to=""><i className="fas fa-thumbs-up"></i></Link>
                     <span>{photo.likes}</span>
                 </div>
 

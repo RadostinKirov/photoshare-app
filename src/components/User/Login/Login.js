@@ -1,10 +1,11 @@
 import { getUser } from '../../../service/auth';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import AuthContext from '../../../contexts/AuthContext';
 
 const Login = () => {
+    const { addInfo } = useContext(AuthContext);
     const navigate = useNavigate();
-    const [user, setUser] = useState({});
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
@@ -12,18 +13,18 @@ const Login = () => {
         const userForm = data.get('username');
         const passForm = data.get('password');
         const userFormData = { "username": userForm, "password": passForm };
-        
-        getUser(userFormData)
-        .then(res => {
-            setUser(res);
-            console.log('user -> ', user);
-            navigate('/');
-        });
-      
-    
-    
-    }
 
+        getUser(userFormData)
+            .then(res => {
+                console.log('res -> ', res);
+                addInfo(res);
+                navigate('/');
+            })
+            .catch(err =>
+                console.log('Error Catched -> ',err));
+
+
+    }
     return (
         <div className="login">
             <form className="login-form" onSubmit={onSubmitHandler}>

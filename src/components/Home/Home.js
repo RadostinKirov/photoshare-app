@@ -1,15 +1,14 @@
 import { useState, useEffect } from 'react';
 import { getAllPhotos } from '../../service/photo';
 import PhotoCard from './PhotoCard';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
     const [photos, setPhotos] = useState([]);
 
     useEffect(() => {
-        
         getAllPhotos()
             .then(result => setPhotos(result))
-        let allPhotos = getAllPhotos();
     }, []);
 
     return (
@@ -32,15 +31,15 @@ const Home = () => {
                     <ul>
                         <li>
                             <i className="fas fa-trophy"></i>
-                            <a href="#">user 1</a>
+                            <Link to="#">user 1</Link>
                         </li>
                         <li>
                             <i className="fas fa-trophy"></i>
-                            <a href="#">user 2</a>
+                            <Link to="#">user 2</Link>
                         </li>
                         <li>
                             <i className="fas fa-trophy"></i>
-                            <a href="#">user 3</a>
+                            <Link to="#">user 3</Link>
                         </li>
                     </ul>
                 </div>
@@ -48,12 +47,12 @@ const Home = () => {
                 <div className="top-commented">
                     <h1>Most commented photo:</h1>
                     <div className="top-commented-img">
-                        <a href="#">
+                        <Link to="#">
                             <div className="top-img">
                                 <img src="https://static.posters.cz/image/750webp/78441.webp" alt="" />
                             </div>
                             <h3>waterfall</h3>
-                        </a>
+                        </Link>
                     </div>
                 </div>
                 <div className="photographer1">

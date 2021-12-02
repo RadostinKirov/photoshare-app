@@ -1,8 +1,14 @@
-import {Link} from 'react-router-dom'
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import AuthContext from '../../contexts/AuthContext';
 
 const Header = ({ navigationChangeHandler }) => {
-      return (
+
+    const { userInfo } = useContext(AuthContext);
+    console.log('userInfo -> ', userInfo);
+    return (
         <header>
+            
             <div className="logo">
                 <Link to="/home">
                     <h2><span className="logo-text">PHOTO</span>SHARE</h2>
@@ -16,7 +22,7 @@ const Header = ({ navigationChangeHandler }) => {
                         <li><Link to="/register">REGISTER</Link></li>
                     </div>
                     <div className="user">
-                        <li><Link to="/profile" className="hello-user">hello, IvanIvanov</Link></li>
+                        <li><Link to="/profile" className="hello-user">hello, {userInfo.username}</Link></li>
                         <li><Link to="/catalog">CATALOG</Link></li>
                         <li><Link to="/profile">PROFILE</Link></li>
                         <li><Link to="/create">ADD PHOTO</Link></li>

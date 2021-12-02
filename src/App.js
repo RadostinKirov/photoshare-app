@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import AuthContext from './contexts/AuthContext';
 
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
@@ -15,54 +16,40 @@ import Page404 from './components/Page404/Page404';
 
 function App() {
 
-  // const navigationChangeHandler = (path) => {
-  //   console.log(path);
-  //   setPage(path);
-  // }
+  const [userInfo, setUserInfo] = useState({
+    username: 'dummy name',
+    id: ''
+  })
+  console.log('userInfo in App -> ', userInfo);
 
-  // const [page, setPage] = useState('/home');
-
-  // const router = (path) => {
-  //   let pathnames = path.split('/');
-  //   let rootPath = pathnames[1];
-  //   let argument = pathnames[2];
-
-  //   const routes = {
-  //     'home': < Home navigationChangeHandler={navigationChangeHandler} />,
-  //     'create': < Create />,
-  //     'login': < Login />,
-  //     'register': < Register />,
-  //     'catalog': < Home navigationChangeHandler={navigationChangeHandler} />,
-  //     'profile': < Profile />,
-  //     'details': < Details id={argument}/>,
-  //     'edit': < Edit id={argument} />,
-  //   }
-
-
-  //   return routes[rootPath]
-  // }
-
-
+  const addInfo = (info) => {
+    console.log('received info in App -> ', info)
+    setUserInfo({
+      username: info.username,
+      id: info._id
+    });
+  }
 
   return (
 
     <div className="main-container">
 
-      <Header />
+      <AuthContext.Provider value={{ addInfo, userInfo }}>
+        <Header />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="home" element={<Home />} />
-        <Route path="create" element={<Create />} />
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
-        <Route path="details/:id" element={<Details />} />
-        <Route path="edit/:id" element={<Edit />} />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="home" element={<Home />} />
+          <Route path="create" element={<Create />} />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+          <Route path="details/:id" element={<Details />} />
+          <Route path="edit/:id" element={<Edit />} />
+          <Route path="*" element={<Page404 />} />
+        </Routes>
 
-      </Routes>
-
-      <Footer />
-
+        <Footer />
+      </AuthContext.Provider>
     </div>
 
   );
