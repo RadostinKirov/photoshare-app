@@ -1,6 +1,11 @@
-import { createUser } from '../../../service/auth'
+import { createUser } from '../../../service/auth';
+import { useContext } from 'react';
+import AuthContext from '../../../contexts/AuthContext';
+import { useNavigate } from 'react-router';
 
 const Register = () => {
+    const navigate = useNavigate();
+    const { addInfo } = useContext(AuthContext);
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
@@ -8,7 +13,15 @@ const Register = () => {
         const user = data.get('username');
         const pass = data.get('password');
         const userData = { "username": user, "password": pass };
-        createUser(userData);
+        createUser(userData)
+            .then(res => {
+                console.log('res -> ', res);
+                addInfo(res);
+                navigate('/');
+            }
+            )
+
+
     }
 
     return (

@@ -1,22 +1,17 @@
 
-export function createUser(data) {
-    fetch('http://localhost:3030/auth/register', {
+export async function createUser(data){
+    const res = await fetch('http://localhost:3030/auth/register', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
-    })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Success:', data);
-            localStorage
-                .setItem('username', data._id)
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
+    });
+
+    const resData = await res.json();
+    return resData;
 }
+
 
 export async function getUser(data) {
     try {
