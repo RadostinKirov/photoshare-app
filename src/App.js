@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import AuthContext from './contexts/AuthContext';
-
+import useLocalStorage from './useLocalStorage';
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
 import Create from './components/Photo/Create/Create';
@@ -16,7 +16,7 @@ import Page404 from './components/Page404/Page404';
 
 function App() {
 
-  const [userInfo, setUserInfo] = useState({
+  const [userInfo, setUserInfo] = useLocalStorage('userInfo' ,{
     username: 'dummy name',
     id: '',
     token: ''

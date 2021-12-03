@@ -1,6 +1,6 @@
 import { getUser } from '../../../service/auth';
 import { useNavigate } from 'react-router-dom';
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import AuthContext from '../../../contexts/AuthContext';
 
 const Login = () => {
@@ -21,11 +21,8 @@ const Login = () => {
                 addInfo(res);
                 navigate('/')
             })
-            .catch(err => console.log('Error Catched -> ', err)
+            .catch(err => console.log('Server Error -> ', err)
             );
-
-
-
 
 
     }
