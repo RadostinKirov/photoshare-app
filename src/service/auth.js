@@ -14,8 +14,7 @@ export async function createUser(data){
 
 
 export async function getUser(data) {
-    try {
-        const res = await fetch('http://localhost:3030/auth/login', {
+          const res = await fetch('http://localhost:3030/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -25,10 +24,13 @@ export async function getUser(data) {
         })
 
         const resData = await res.json();
-        return resData;
-    }
-    catch (error) {
-        console.error('Error:', error);
-        return error;
-    };
+        console.log('res.ok -> ', res.ok)
+        console.log('resData -> ', resData);
+        if (res.ok) {
+            return resData;
+        }else {
+            throw resData;
+        }
+    
+    
 }

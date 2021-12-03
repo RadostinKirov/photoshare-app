@@ -14,14 +14,18 @@ const Login = () => {
         const passForm = data.get('password');
         const userFormData = { "username": userForm, "password": passForm };
 
+
         getUser(userFormData)
             .then(res => {
-                console.log('res -> ', res);
+                console.log('res entered')
                 addInfo(res);
-                navigate('/');
+                navigate('/')
             })
-            .catch(err =>
-                console.log('Error Catched -> ',err));
+            .catch(err => console.log('Error Catched -> ', err)
+            );
+
+
+
 
 
     }
