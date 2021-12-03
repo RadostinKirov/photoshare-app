@@ -1,27 +1,31 @@
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import AuthContext from './contexts/AuthContext';
-import useLocalStorage from './useLocalStorage';
+import useLocalStorage from './hooks/useLocalStorage';
 import Header from './components/Header/Header';
 import Home from './components/Home/Home';
 import Create from './components/Photo/Create/Create';
 import Login from './components/User/Login/Login';
 import Register from './components/User/Register/Register';
+import Logout from './components/User/Logout/Logout';
 import Details from './components/Photo/Details/Details';
 import Edit from './components/Photo/Edit/Edit';
 import Footer from './components/Footer/Footer';
 import Profile from './components/User/Profile/Profile';
 import Page404 from './components/Page404/Page404';
 
-
+const initialAuthInfo = {
+  username: '',
+  id: '',
+  token: ''
+}
 function App() {
 
-  const [userInfo, setUserInfo] = useLocalStorage('userInfo' ,{
-    username: 'dummy name',
-    id: '',
-    token: ''
-  })
-  console.log('userInfo in App -> ', userInfo);
+  const [userInfo, setUserInfo] = useLocalStorage('userInfo', initialAuthInfo)
+
+  const logout = () => {
+    setUserInfo(initialAuthInfo);
+  }
 
   const addInfo = (info) => {
     console.log('received info in App -> ', info)
@@ -36,7 +40,7 @@ function App() {
 
     <div className="main-container">
 
-      <AuthContext.Provider value={{ addInfo, userInfo }}>
+      <AuthContext.Provider value={{ addInfo, userInfo, logout }}>
         <Header />
 
         <Routes>
@@ -45,6 +49,7 @@ function App() {
           <Route path="create" element={<Create />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+          <Route path="logout" element={<Logout />} />
           <Route path="details/:id" element={<Details />} />
           <Route path="edit/:id" element={<Edit />} />
           <Route path="*" element={<Page404 />} />

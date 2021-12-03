@@ -34,3 +34,16 @@ export async function getUser(data) {
     
     
 }
+
+export async function logout(){
+    console.log('logout entered');
+    const res = await fetch('http://localhost:3030/auth/logout', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: "same-origin"
+        });
+
+        console.log('logoute res -> ', res);
+}
