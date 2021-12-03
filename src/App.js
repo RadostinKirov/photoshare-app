@@ -18,15 +18,17 @@ function App() {
 
   const [userInfo, setUserInfo] = useState({
     username: 'dummy name',
-    id: ''
+    id: '',
+    token: ''
   })
   console.log('userInfo in App -> ', userInfo);
 
   const addInfo = (info) => {
     console.log('received info in App -> ', info)
     setUserInfo({
-      username: info.username,
-      id: info._id
+      username: info.userInfo.username,
+      id: info.userInfo._id,
+      token: info.token
     });
   }
 

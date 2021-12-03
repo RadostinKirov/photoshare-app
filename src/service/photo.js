@@ -29,6 +29,7 @@ export async function createPhoto(data) {
     const resData = await fetch('http://localhost:3030/photo/create', {
         method: 'POST',
         headers: {
+            
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
