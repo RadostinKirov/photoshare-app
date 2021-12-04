@@ -33,6 +33,10 @@ const Details = () => {
             .catch(err => console.log('Error get user by ID -> ', err))
     }, [ownerID])
 
+  const  onClickLikeHandler = (e) => {
+    e.preventDefault();
+  }
+
 console.log('isAuth -> ', isAuth);
     return (
         <div className="details">
@@ -49,7 +53,7 @@ console.log('isAuth -> ', isAuth);
 
                 <p>{photo.description}</p>
                 <div className="likes-container">
-                    <Link to=""><i className="fas fa-thumbs-up"></i></Link>
+                    <Link to="" onClick={onClickLikeHandler}><i className="fas fa-thumbs-up"></i></Link>
                     <span>{photo.likes}</span>
                 </div>
 

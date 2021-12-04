@@ -131,6 +131,7 @@
 .details .likes-container a {
     color: rgb(73, 191, 76);
     font-size: 40px;
+    margin-right: 20px;
 }
 
 .details .likes-container i:hover {
