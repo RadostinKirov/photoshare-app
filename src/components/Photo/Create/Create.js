@@ -1,6 +1,9 @@
 import { createPhoto } from '../../../service/photo'
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import AuthContext from '../../../contexts/AuthContext';
 const Create = () => {
+    const {userInfo} = useContext(AuthContext)
     const navigate = useNavigate();
 
 
@@ -10,8 +13,9 @@ const Create = () => {
         const title = data.get('title');
         const description = data.get('description');
         const imageUrl = data.get('imageUrl');
-        const owner = '619d4b563455f930e0994271'
-        const photoData = { title, description, imageUrl, owner };
+        const owner = userInfo.id;
+        const token = userInfo.token;
+        const photoData = { title, description, imageUrl, owner, token };
         createPhoto(photoData)
             .then(navigate('/'));
     }
