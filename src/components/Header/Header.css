@@ -1,0 +1,43 @@
+.hide{
+    display: none;
+}
+
+.show{
+    display: flex;
+}
+
+.header-buttons {
+    width: 100%;
+    justify-content: center;
+}
+
+.btn-hide{
+    display: none;
+    transition-delay: 3;
+}
+
+.btn-show{
+    display: flex;
+    transition-delay: 3;
+}
+
+.header-container {
+    width: 100%;
+    background:linear-gradient(0deg, rgba(0,0,0, 0.6), rgba(0,0,0, 0.6)), url('./amateur-vs-professional-photographer-1-1.jpg');
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+.high {
+    height: 400px;
+    transition: 0.8s;
+}
+
+.small {
+    height: 200px;
+    transition: 0.8s;
+}

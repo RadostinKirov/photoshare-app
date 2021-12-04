@@ -3,20 +3,6 @@
     display: flex;
 }   
 
-.main-content main {
-    width: 75%;
-    max-height: 800px;
-    overflow: auto;
-    background:linear-gradient(0deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url('../images/background.png');
-}
-
-.main-content aside {
-    width: 25%;
-    padding-left: 30px;
-    position: relative;
-}
-
-
 .main-content .img-container {
     display: flex;
     flex-wrap: wrap;

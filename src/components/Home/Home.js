@@ -2,18 +2,24 @@ import { useState, useEffect } from 'react';
 import { getAllPhotos } from '../../service/photo';
 import PhotoCard from './PhotoCard';
 import { Link } from 'react-router-dom';
+import './Home.css';
+import { useContext } from 'react';
+import AuthContext from '../../contexts/AuthContext';
 
 const Home = () => {
+    const { userInfo } = useContext(AuthContext);
+    const isUser = Boolean(userInfo.username.length)
     const [photos, setPhotos] = useState([]);
 
     useEffect(() => {
         getAllPhotos()
-            .then(result => setPhotos(result))
+            .then(result => setPhotos(result));
+            window.scrollTo(0, 0);
     }, []);
 
     return (
         <div className="main-content">
-            <main>
+            <main className={isUser ? 'main-user' : 'main-guest'}>
                 <div className="img-container">
 
                     {
@@ -25,7 +31,7 @@ const Home = () => {
 
                 </div>
             </main>
-            <aside>
+            <aside className={isUser ? 'aside-user' : 'aside-guest' }>
                 <div className="top-users">
                     <h1>Top rated users:</h1>
                     <ul>
