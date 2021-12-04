@@ -12,7 +12,6 @@ export async function createUser(data){
     return resData;
 }
 
-
 export async function getUser(data) {
           const res = await fetch('http://localhost:3030/auth/login', {
             method: 'POST',
@@ -33,6 +32,27 @@ export async function getUser(data) {
         }
     
     
+}
+
+export async function getUserById(id){
+    console.log('getUserEntered');
+    console.log('ID received -> ', id);
+    const res = await fetch('http://localhost:3030/auth/getUserById', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        credentials: "same-origin",
+        body: JSON.stringify({id})
+    });
+    
+    const resData = await res.json();
+    console.log('resData -> ', resData)
+    if (res.ok) {
+        return resData;
+    }else {
+        console.log(resData.message);
+    }
 }
 
 export async function logout(){
