@@ -2,7 +2,8 @@ import { useParams, Link } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import AuthContext from "../../../contexts/AuthContext";
 import { getPhogoById } from "../../../service/photo";
-import { getUserById } from '../../../service/auth'
+import { getUserById } from '../../../service/auth';
+import './Details.css';
 
 const Details = () => {
     const { userInfo } = useContext(AuthContext);
@@ -20,23 +21,19 @@ const Details = () => {
             .then(result => {
                 setPhoto(result);
                 setOwnerID(result.owner)
-                
                 result.owner == userInfo.id ? setIsAuth(true) : setIsAuth(false);
             })
-
-    
     }, []);
 
     useEffect(() => {
         getUserById(ownerID)
             .then(res => {
-                
                 setOwner(res);
             })
-            .catch(err => console.log('Error get user by ID -> ',err))
+            .catch(err => console.log('Error get user by ID -> ', err))
     }, [ownerID])
 
-
+console.log('isAuth -> ', isAuth);
     return (
         <div className="details">
             <section className="image">
@@ -45,8 +42,8 @@ const Details = () => {
                 <div className="image-container">
                     <img src={photo.imageUrl} alt="" />
 
-                    <Link to={`/edit/${photoId}`} className="edit-btn"><i className="fas fa-edit"></i></Link>
-                    <Link to="" className="delete-btn"><i className="fas fa-trash-alt"></i></Link>
+                    <Link to={`/edit/${photoId}`} className={'edit-btn ' + (isAuth ? 'block': 'none')}><i className="fas fa-edit"></i></Link>
+                    <Link to="" className={'delete-btn ' + (isAuth ? 'block' : 'none')}><i className="fas fa-trash-alt"></i></Link>
 
                 </div>
 
