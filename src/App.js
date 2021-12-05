@@ -69,6 +69,7 @@ function App() {
           <Route path="logout" element={<Logout />} />
           <Route path="details/:id" element={<Details />} />
           <Route path="edit/:id" element={<Edit />} />
+          <Route path="profile/:id" element={<Profile />} />
           <Route path="*" element={<Page404 />} />
         </Routes>
 

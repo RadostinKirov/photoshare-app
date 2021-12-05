@@ -28,7 +28,7 @@ const Header = ({ navigationChangeHandler }) => {
                     <div className={isUser ? 'show' : 'hide'}>
                         <li><Link to="/profile" className="hello-user">hello, {userInfo.username}</Link></li>
                         <li><Link to="/catalog">CATALOG</Link></li>
-                        <li><Link to="/profile">PROFILE</Link></li>
+                        <li><Link to={`/profile/${userInfo.id}`}>PROFILE</Link></li>
                         <li><Link to="/create">ADD PHOTO</Link></li>
                         <li><Link to="/logout">LOGOUT</Link></li>
                     </div>
