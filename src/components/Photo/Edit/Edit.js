@@ -1,15 +1,30 @@
 import { useParams } from "react-router-dom";
 import { useContext } from "react/cjs/react.development";
 import AuthContext from "../../../contexts/AuthContext";
+import { editPhoto } from "../../../service/photo";
 
 const Edit = () => {
     const { id } = useParams();
-    const { photoInfo } = useContext(AuthContext)
-    console.log("Edit ID -> ", id);
-    console.log(photoInfo)
+    const { photoInfo, userInfo } = useContext(AuthContext)
+
+
+    const onSubmitHandler = (e) => {
+        e.preventDefault();
+        let data = new FormData(e.currentTarget);
+        const title = data.get('title');
+        const description = data.get('description');
+        const imageUrl = data.get('imageUrl');
+        const owner = userInfo.id;
+        const token = userInfo.token;
+        const photoId = id;
+        const photoData = { title, description, imageUrl, owner, token, photoId };
+        console.log(photoData, id)
+        editPhoto(photoData, id)
+    }
+
     return (
         <div className="edit">
-            <form className="edit-form">
+            <form className="edit-form" onSubmit={onSubmitHandler}>
                 <h1>Edit Photo</h1>
 
                 <input type="text" name="title" placeholder="Title" defaultValue={photoInfo.title} />

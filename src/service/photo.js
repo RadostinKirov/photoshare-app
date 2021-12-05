@@ -41,6 +41,21 @@ export async function createPhoto(data) {
     }
 }
 
+export async function editPhoto(data, id){
+  const resData = await fetch(`http://localhost:3030/photo/edit/${id}`, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+  
+  const result = resData.json();
+
+  console.log('resData -> ', resData);
+  console.log('result ', result)
+}
+
 export async function likePhoto(data) {
     const { photoId } = data;
     const resData = await fetch(`http://localHost:3030/photo/like/${photoId}`, {
