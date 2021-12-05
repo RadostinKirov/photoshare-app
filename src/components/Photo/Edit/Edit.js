@@ -1,8 +1,12 @@
 import { useParams } from "react-router-dom";
+import { useContext } from "react/cjs/react.development";
+import AuthContext from "../../../contexts/AuthContext";
 
 const Edit = () => {
-    const {id} = useParams();
+    const { id } = useParams();
+    const { photoInfo } = useContext(AuthContext)
     console.log("Edit ID -> ", id);
+    console.log(photoInfo)
     return (
         <div className="edit">
             <form className="edit-form">

@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import AuthContext from '../../../contexts/AuthContext';
 
 const Login = () => {
-    const { addInfo } = useContext(AuthContext);
+    const { addUserInfo } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const onSubmitHandler = (e) => {
@@ -18,7 +18,7 @@ const Login = () => {
         getUser(userFormData)
             .then(res => {
                 console.log('res entered')
-                addInfo(res);
+                addUserInfo(res);
                 navigate('/')
             })
             .catch(err => console.log('Server Error -> ', err)

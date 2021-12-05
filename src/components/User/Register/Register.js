@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router';
 
 const Register = () => {
     const navigate = useNavigate();
-    const { addInfo } = useContext(AuthContext);
+    const { addUserInfo } = useContext(AuthContext);
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
@@ -16,7 +16,7 @@ const Register = () => {
         createUser(userData)
             .then(res => {
                 console.log('res -> ', res);
-                addInfo(res);
+                addUserInfo(res);
                 navigate('/');
             }
             )

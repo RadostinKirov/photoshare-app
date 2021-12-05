@@ -19,15 +19,31 @@ const initialAuthInfo = {
   id: '',
   token: ''
 }
+
+const initialPhotoInfo = {
+  title: '',
+  description: '',
+  imageUrl: ''
+}
+
 function App() {
 
-  const [userInfo, setUserInfo] = useLocalStorage('userInfo', initialAuthInfo)
+  const [userInfo, setUserInfo] = useLocalStorage('userInfo', initialAuthInfo);
+  const [photoInfo, setPhotoInfo] = useState(initialPhotoInfo);
 
   const logout = () => {
     setUserInfo(initialAuthInfo);
   }
 
-  const addInfo = (info) => {
+  const addPhotoInfo = (info) => {
+    setPhotoInfo({
+      title: info.title,
+      description: info.description,
+      imageUrl: info.imageUrl
+    });
+  }
+
+  const addUserInfo = (info) => {
     console.log('received info in App -> ', info)
     setUserInfo({
       username: info.userInfo.username,
@@ -36,11 +52,12 @@ function App() {
     });
   }
 
+
   return (
 
     <div className="main-container">
 
-      <AuthContext.Provider value={{ addInfo, userInfo, logout }}>
+      <AuthContext.Provider value={{ addUserInfo, userInfo, logout, photoInfo, addPhotoInfo }}>
         <Header />
 
         <Routes>

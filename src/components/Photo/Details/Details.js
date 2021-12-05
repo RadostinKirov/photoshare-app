@@ -6,34 +6,34 @@ import { getUserById } from '../../../service/auth';
 import './Details.css';
 
 const Details = () => {
-    const { userInfo } = useContext(AuthContext);
+    let { userInfo, addPhotoInfo } = useContext(AuthContext);
     const { id: photoId } = useParams();
 
 
-//    console.log("photoInfo -> ", photoId);
+
+    //    console.log("photoInfo -> ", photoId);
     const [photo, setPhoto] = useState([]);
     const [isAuth, setIsAuth] = useState(false);
     const [ownerID, setOwnerID] = useState('123');
     const [owner, setOwner] = useState('loading nanme...');
     const [isLiked, setIsLiked] = useState(false);
-   
+
     useEffect(() => {
         getPhogoById(photoId)
             .then(result => {
                 setPhoto(result);
                 setOwnerID(result.owner);
                 result.owner == userInfo.id ? setIsAuth(true) : setIsAuth(false);
-                if(result.usersLiked.includes(userInfo.id)){
+                if (result.usersLiked.includes(userInfo.id)) {
                     setIsLiked(true);
-                    console.log('isLiked -> ', isLiked)
-                    console.log(result.usersLiked);
-                }
-                console.log(result.usersLiked.includes(userInfo.id));
-   
+                };
+                addPhotoInfo(result);
+
+
 
             });
-        
-        
+
+
     }, []);
 
     useEffect(() => {
@@ -42,34 +42,34 @@ const Details = () => {
                 setOwner(res);
             })
             .catch(err => {
-               console.log('Error get user by ID -> ', err);
+                console.log('Error get user by ID -> ', err);
                 setOwner('unknown');
             })
     }, [ownerID])
 
-  const  onClickLikeHandler = (e) => {
-    e.preventDefault();
-    const data = {
-        userId: userInfo.id,
-        photoId
+    const onClickLikeHandler = (e) => {
+        e.preventDefault();
+        const data = {
+            userId: userInfo.id,
+            photoId
+        }
+        likePhoto(data)
+            .then(res => {
+                const newLikes = res.likes;
+                console.log('setPhoto entered')
+                setPhoto({ ...photo, likes: newLikes });
+                setIsLiked(true);
+            })
+            .catch(err => console.log('>>>>> ', err));
     }
-    likePhoto(data)
-    .then(res => {
-        const newLikes = res.likes;
-        console.log('setPhoto entered')
-        setPhoto({...photo, likes: newLikes});
-        setIsLiked(true);
-    })
-    .catch(err => console.log('>>>>> ', err));
-  }
 
-  const likeCheck = () => {
-    if (!isLiked && !isAuth){
-        return 'thumbs-up-active';
-    }else {
-        return 'thumbs-up-inactive';
+    const likeCheck = () => {
+        if (!isLiked && !isAuth) {
+            return 'thumbs-up-active';
+        } else {
+            return 'thumbs-up-inactive';
+        }
     }
-  }
 
     return (
         <div className="details">
@@ -79,14 +79,14 @@ const Details = () => {
                 <div className="image-container">
                     <img src={photo.imageUrl} alt="" />
 
-                    <Link to={`/edit/${photoId}`} className={'edit-btn ' + (isAuth ? 'block': 'none')}><i className="fas fa-edit"></i></Link>
+                    <Link to={`/edit/${photoId}`} className={'edit-btn ' + (isAuth ? 'block' : 'none')}><i className="fas fa-edit"></i></Link>
                     <Link to="" className={'delete-btn ' + (isAuth ? 'block' : 'none')}><i className="fas fa-trash-alt"></i></Link>
 
                 </div>
 
                 <p>{photo.description}</p>
                 <div className="likes-container">
-                    <Link to="" onClick={onClickLikeHandler} className={ likeCheck() }><i className={"fas fa-thumbs-up "}></i></Link>
+                    <Link to="" onClick={onClickLikeHandler} className={likeCheck()}><i className={"fas fa-thumbs-up "}></i></Link>
                     <span>{photo.likes}</span>
                 </div>
 
