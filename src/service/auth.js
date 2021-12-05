@@ -35,8 +35,8 @@ export async function getUser(data) {
 }
 
 export async function getUserById(id){
-    console.log('getUserEntered');
-    console.log('ID received -> ', id);
+ //   console.log('getUserEntered');
+ //   console.log('ID received -> ', id);
     const res = await fetch('http://localhost:3030/auth/getUserById', {
         method: 'POST',
         headers: {
@@ -47,11 +47,12 @@ export async function getUserById(id){
     });
     
     const resData = await res.json();
-    console.log('resData -> ', resData)
+ //   console.log('resData -> ', resData)
     if (res.ok) {
         return resData;
     }else {
-        console.log(resData.message);
+        throw resData;
+        
     }
 }
 

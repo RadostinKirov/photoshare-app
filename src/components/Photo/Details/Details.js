@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import AuthContext from "../../../contexts/AuthContext";
-import { getPhogoById } from "../../../service/photo";
+import { getPhogoById, likePhoto } from "../../../service/photo";
 import { getUserById } from '../../../service/auth';
 import './Details.css';
 
@@ -10,19 +10,30 @@ const Details = () => {
     const { id: photoId } = useParams();
 
 
-    console.log("photoInfo -> ", photoId);
+//    console.log("photoInfo -> ", photoId);
     const [photo, setPhoto] = useState([]);
     const [isAuth, setIsAuth] = useState(false);
     const [ownerID, setOwnerID] = useState('123');
     const [owner, setOwner] = useState('loading nanme...');
-
+    const [isLiked, setIsLiked] = useState(false);
+   
     useEffect(() => {
         getPhogoById(photoId)
             .then(result => {
                 setPhoto(result);
-                setOwnerID(result.owner)
+                setOwnerID(result.owner);
                 result.owner == userInfo.id ? setIsAuth(true) : setIsAuth(false);
-            })
+                if(result.usersLiked.includes(userInfo.id)){
+                    setIsLiked(true);
+                    console.log('isLiked -> ', isLiked)
+                    console.log(result.usersLiked);
+                }
+                console.log(result.usersLiked.includes(userInfo.id));
+   
+
+            });
+        
+        
     }, []);
 
     useEffect(() => {
@@ -30,14 +41,28 @@ const Details = () => {
             .then(res => {
                 setOwner(res);
             })
-            .catch(err => console.log('Error get user by ID -> ', err))
+            .catch(err => {
+               console.log('Error get user by ID -> ', err);
+                setOwner('unknown');
+            })
     }, [ownerID])
 
   const  onClickLikeHandler = (e) => {
     e.preventDefault();
+    const data = {
+        userId: userInfo.id,
+        photoId
+    }
+    likePhoto(data)
+    .then(res => {
+        const newLikes = res.likes;
+        console.log('setPhoto entered')
+        setPhoto({...photo, likes: newLikes});
+    })
+    .catch(err => console.log('>>>>> ', err));
   }
 
-console.log('isAuth -> ', isAuth);
+//console.log('isAuth -> ', isAuth);
     return (
         <div className="details">
             <section className="image">
