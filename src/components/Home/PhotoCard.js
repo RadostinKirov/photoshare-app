@@ -13,7 +13,7 @@ const isUser = Boolean(userInfo.username.length);
         <section className="img-card">
             <div className="image">
                 <Link to={isUser ? `/details/${game._id}` : '/login'}>
-                    <img src={game.imageUrl} alt="" />
+                    <img src={game.imageUrl} alt={game.title + " picture"} />
                 </Link>
             </div>
             <h3>{game.title}</h3>

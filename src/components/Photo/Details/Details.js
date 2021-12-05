@@ -58,11 +58,19 @@ const Details = () => {
         const newLikes = res.likes;
         console.log('setPhoto entered')
         setPhoto({...photo, likes: newLikes});
+        setIsLiked(true);
     })
     .catch(err => console.log('>>>>> ', err));
   }
 
-//console.log('isAuth -> ', isAuth);
+  const likeCheck = () => {
+    if (!isLiked && !isAuth){
+        return 'thumbs-up-active';
+    }else {
+        return 'thumbs-up-inactive';
+    }
+  }
+
     return (
         <div className="details">
             <section className="image">
@@ -78,7 +86,7 @@ const Details = () => {
 
                 <p>{photo.description}</p>
                 <div className="likes-container">
-                    <Link to="" onClick={onClickLikeHandler}><i className="fas fa-thumbs-up"></i></Link>
+                    <Link to="" onClick={onClickLikeHandler} className={ likeCheck() }><i className={"fas fa-thumbs-up "}></i></Link>
                     <span>{photo.likes}</span>
                 </div>
 
