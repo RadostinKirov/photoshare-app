@@ -1,12 +1,12 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useContext } from "react/cjs/react.development";
 import AuthContext from "../../../contexts/AuthContext";
 import { editPhoto } from "../../../service/photo";
 
 const Edit = () => {
     const { id } = useParams();
-    const { photoInfo, userInfo } = useContext(AuthContext)
-
+    const { photoInfo, userInfo } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
@@ -20,6 +20,8 @@ const Edit = () => {
         const photoData = { title, description, imageUrl, owner, token, photoId };
         console.log(photoData, id)
         editPhoto(photoData, id)
+            .then(navigate(`/details/${id}`))
+            .catch(err => console.log(err));
     }
 
     return (

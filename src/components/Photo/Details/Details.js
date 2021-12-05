@@ -1,13 +1,14 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import AuthContext from "../../../contexts/AuthContext";
-import { getPhogoById, likePhoto } from "../../../service/photo";
+import { deletePhoto, getPhogoById, likePhoto } from "../../../service/photo";
 import { getUserById } from '../../../service/auth';
 import './Details.css';
 
 const Details = () => {
     let { userInfo, addPhotoInfo } = useContext(AuthContext);
     const { id: photoId } = useParams();
+    const navigate = useNavigate();
 
 
 
@@ -63,6 +64,12 @@ const Details = () => {
             .catch(err => console.log('>>>>> ', err));
     }
 
+    const onClickDeleteHandler = (e) => {
+        e.preventDefault();
+        deletePhoto(photoId)
+        .then(navigate('/'));
+    }
+
     const likeCheck = () => {
         if (!isLiked && !isAuth) {
             return 'thumbs-up-active';
@@ -79,8 +86,12 @@ const Details = () => {
                 <div className="image-container">
                     <img src={photo.imageUrl} alt="" />
 
-                    <Link to={`/edit/${photoId}`} className={'edit-btn ' + (isAuth ? 'block' : 'none')}><i className="fas fa-edit"></i></Link>
-                    <Link to="" className={'delete-btn ' + (isAuth ? 'block' : 'none')}><i className="fas fa-trash-alt"></i></Link>
+                    <Link to={`/edit/${photoId}`} className={'edit-btn ' + (isAuth ? 'block' : 'none')}>
+                        <i className="fas fa-edit"></i>
+                    </Link>
+                    <Link to='' onClick={onClickDeleteHandler} className={'delete-btn ' + (isAuth ? 'block' : 'none')}>
+                        <i className="fas fa-trash-alt"></i>
+                    </Link>
 
                 </div>
 

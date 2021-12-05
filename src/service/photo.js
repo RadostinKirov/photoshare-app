@@ -35,25 +35,48 @@ export async function createPhoto(data) {
 
     const result = resData.json();
     if (result.status == 'ok') {
-
+        return result;
     } else {
         throw result;
     }
 }
 
-export async function editPhoto(data, id){
-  const resData = await fetch(`http://localhost:3030/photo/edit/${id}`, {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  });
-  
-  const result = resData.json();
+export async function editPhoto(data, id) {
+    const resData = await fetch(`http://localhost:3030/photo/edit/${id}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    });
 
-  console.log('resData -> ', resData);
-  console.log('result ', result)
+    const result = resData.json();
+    if (resData.ok) {
+        console.log('OK', result)
+        return result;
+    } else {
+        console.log('ERROR', result)
+        throw result;
+    }
+}
+
+export async function deletePhoto(id) {
+    const resData = await fetch(`http://localHost:3030/photo/delete/${id}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+
+    const result = resData.json();
+    if (resData.ok) {
+        console.log('OK', result)
+        return result;
+    } else {
+        console.log('ERROR', result)
+        throw result;
+    }
+
 }
 
 export async function likePhoto(data) {
@@ -66,12 +89,12 @@ export async function likePhoto(data) {
         body: JSON.stringify(data),
     });
     const result = await resData.json();
-    console.log('resData -> ',resData)
+    console.log('resData -> ', resData)
     if (resData.ok) {
         console.log('OK', result)
         return result;
     } else {
-        console.log ('ERROR' ,result)
+        console.log('ERROR', result)
         throw result;
     }
 }
