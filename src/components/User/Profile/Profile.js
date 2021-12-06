@@ -1,4 +1,17 @@
+import AuthContext from "../../../contexts/AuthContext";
+import { useContext } from "react";
+import { useParams } from "react-router-dom";
+
 const Profile = () => {
+    const { id: userId } = useParams();
+    const { allPhotos } = useContext(AuthContext);
+    console.log('allophotos -> ', allPhotos);
+    const usersPhotos = allPhotos.filter(x => x.owner == userId);
+    const totalPhotos = usersPhotos.length;
+    const totalLikes = usersPhotos.reduce((acc ,obj) => acc + obj.likes ,0);
+    const mostLiked = allPhotos.sort((a, b) => (b.likes - a.likes))[0];
+
+    console.log(mostLiked)
     return (
         <div className="profile">
             <h1>Profile information - <span className="username">IvanIvanov</span></h1>

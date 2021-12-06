@@ -7,13 +7,18 @@ import { useContext } from 'react';
 import AuthContext from '../../contexts/AuthContext';
 
 const Home = () => {
-    const { userInfo } = useContext(AuthContext);
+    const { userInfo, addAllPhotosInfo } = useContext(AuthContext);
     const isUser = Boolean(userInfo.username.length)
     const [photos, setPhotos] = useState([]);
 
     useEffect(() => {
         getAllPhotos()
-            .then(result => setPhotos(result));
+            .then(result => {
+                setPhotos(result);
+                
+                console.log('result -> ', result)
+                addAllPhotosInfo(result);
+            });
             window.scrollTo(0, 0);
     }, []);
 
