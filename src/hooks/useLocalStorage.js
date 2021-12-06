@@ -22,7 +22,7 @@ const useLocalStorage = (key, initialData) => {
         } catch (err) {
             console.log(err);
         }
-    }
+    };
 
     return [state, setItem];
 }

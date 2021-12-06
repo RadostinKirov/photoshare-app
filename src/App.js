@@ -30,8 +30,7 @@ function App() {
 
   const [userInfo, setUserInfo] = useLocalStorage('userInfo', initialAuthInfo);
   const [photoInfo, setPhotoInfo] = useState(initialPhotoInfo);
-  const [allPhotos, setAllphotos] = useState([]);
-
+  const [allPhotos, setAllphotos] = useLocalStorage('allPhotos', [])
   const logout = () => {
     setUserInfo(initialAuthInfo);
   }
@@ -64,8 +63,8 @@ function App() {
 
       <AuthContext.Provider value={{
         userInfo, addUserInfo,
-        photoInfo, addAllPhotosInfo,
-        allPhotos, setAllphotos,
+        photoInfo, addPhotoInfo,
+        allPhotos, addAllPhotosInfo,
       }}>
        
         <Header />
