@@ -4,6 +4,7 @@ import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react/cjs/react.development";
 import { getUserById } from "../../../service/auth";
 import PhotoCard from "../../Home/PhotoCard";
+import './Profile.css';
 
 const Profile = () => {
     const { id: userId } = useParams();
@@ -14,6 +15,7 @@ const Profile = () => {
     const totalPhotos = usersPhotos.length;
     const totalLikes = usersPhotos.reduce((acc, obj) => acc + obj.likes, 0);
     const mostLiked = usersPhotos.sort((a, b) => (b.likes - a.likes))[0];
+   
     const [owner, setOwner] = useState('Loadind name...');
     let [isVisible, setIsVisible] = useState(false);
     useEffect(() => {
@@ -23,11 +25,11 @@ const Profile = () => {
     }, []);
 
 
-      const  onShowHideClick = (e) => {
-          e.preventDefault();
-          setIsVisible(!isVisible);
-    
-      }
+    const onShowHideClick = (e) => {
+        e.preventDefault();
+        setIsVisible(!isVisible);
+
+    }
     console.log(mostLiked)
     return (
         <div className="profile">
@@ -55,12 +57,13 @@ const Profile = () => {
                     </Link>
                 </div>
             </aside>
-            
-            {
-                !isVisible
-                ? ''
-                : usersPhotos.map(x =>  <PhotoCard key={x._id} photo={x} /> )
-            }
+            <div className="user-photos">
+                {
+                    !isVisible
+                        ? ''
+                        : usersPhotos.map(x => <PhotoCard key={x._id} photo={x} />)
+                }
+            </div>
         </div>
     )
 }

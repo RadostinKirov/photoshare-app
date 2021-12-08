@@ -1,0 +1,6 @@
+.user-photos {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    padding-top: 60px;
+}

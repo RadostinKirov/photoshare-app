@@ -65,6 +65,7 @@ function App() {
         userInfo, addUserInfo,
         photoInfo, addPhotoInfo,
         allPhotos, addAllPhotosInfo,
+        logout
       }}>
        
         <Header />

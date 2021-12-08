@@ -9,10 +9,12 @@ import AuthContext from '../../contexts/AuthContext';
 import { getRanklist } from '../../service/auth';
 
 const Home = () => {
-    const { userInfo, addAllPhotosInfo } = useContext(AuthContext);
+    const { userInfo, addAllPhotosInfo, allPhotos } = useContext(AuthContext);
     const isUser = Boolean(userInfo.username.length)
     const [photos, setPhotos] = useState([]);
     const [ranklist, setRanklist] = useState([]);
+
+    const mostLiked = allPhotos.sort((a, b) => (b.likes - a.likes))[0];
 
     useEffect(() => {
         getAllPhotos()
@@ -64,9 +66,9 @@ const Home = () => {
                 <div className="top-commented">
                     <h1>Most commented photo:</h1>
                     <div className="top-commented-img">
-                        <Link to="#">
+                        <Link to={`/details/${mostLiked._id}`}>
                             <div className="top-img">
-                                <img src="https://static.posters.cz/image/750webp/78441.webp" alt="" />
+                                <img src={mostLiked.imageUrl} alt="" />
                             </div>
                             <h3>waterfall</h3>
                         </Link>
