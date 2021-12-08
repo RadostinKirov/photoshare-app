@@ -3,22 +3,31 @@ import { useContext } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react/cjs/react.development";
 import { getUserById } from "../../../service/auth";
+import PhotoCard from "../../Home/PhotoCard";
 
 const Profile = () => {
     const { id: userId } = useParams();
     const { allPhotos } = useContext(AuthContext);
     console.log('allophotos -> ', allPhotos);
+
     const usersPhotos = allPhotos.filter(x => x.owner == userId);
     const totalPhotos = usersPhotos.length;
-    const totalLikes = usersPhotos.reduce((acc ,obj) => acc + obj.likes ,0);
-    const mostLiked = allPhotos.sort((a, b) => (b.likes - a.likes))[0];
-    const [owner, setOwner] = useState('Loadind name...')
-    useEffect(() => { 
+    const totalLikes = usersPhotos.reduce((acc, obj) => acc + obj.likes, 0);
+    const mostLiked = usersPhotos.sort((a, b) => (b.likes - a.likes))[0];
+    const [owner, setOwner] = useState('Loadind name...');
+    let [isVisible, setIsVisible] = useState(false);
+    useEffect(() => {
         getUserById(userId)
-        .then(res => setOwner(res))
-        .catch(err => console.log('Error get user by Id => ', err))
+            .then(res => setOwner(res))
+            .catch(err => console.log('Error get user by Id => ', err))
     }, []);
 
+
+      const  onShowHideClick = (e) => {
+          e.preventDefault();
+          setIsVisible(!isVisible);
+    
+      }
     console.log(mostLiked)
     return (
         <div className="profile">
@@ -35,12 +44,8 @@ const Profile = () => {
                         Total photos: <span className="profile-value">{totalPhotos}</span>
                     </li>
 
-                    <li>
-                        <i className="fas fa-trophy"></i>
-                        Ranklist postion: <span className="profile-value">5</span>
-                    </li>
                 </ul>
-                <a href="#" className="all-photos-btn">See all photos</a>
+                <Link onClick={onShowHideClick} to='' className="all-photos-btn">{!isVisible ? 'See all photos' : 'Hide all Photos'}</Link>
             </main>
             <aside>
                 <h1>BEST PHOTO</h1>
@@ -50,6 +55,12 @@ const Profile = () => {
                     </Link>
                 </div>
             </aside>
+            
+            {
+                !isVisible
+                ? ''
+                : usersPhotos.map(x =>  <PhotoCard key={x._id} photo={x} /> )
+            }
         </div>
     )
 }

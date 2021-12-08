@@ -5,18 +5,18 @@ import AuthContext from '../../contexts/AuthContext';
 
 
 
-const PhotoCard = ({ game }) => {
+const PhotoCard = ({ photo }) => {
 const {userInfo} = useContext(AuthContext);
 const isUser = Boolean(userInfo.username.length);
 
     return (
         <section className="img-card">
             <div className="image">
-                <Link to={isUser ? `/details/${game._id}` : '/login'}>
-                    <img src={game.imageUrl} alt={game.title + " picture"} />
+                <Link to={isUser ? `/details/${photo._id}` : '/login'}>
+                    <img src={photo.imageUrl} alt={photo.title + " picture"} />
                 </Link>
             </div>
-            <h3>{game.title}</h3>
+            <h3>{photo.title}</h3>
         </section>
     )
 }

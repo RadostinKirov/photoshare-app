@@ -42,7 +42,7 @@ const Home = () => {
 
                     {
                         photos.length > 0
-                            ? photos.map(x => <PhotoCard key={x._id} game={x} />)
+                            ? photos.map(x => <PhotoCard key={x._id} photo={x} />)
                             : <h4 className='no-photos'>No photos yet</h4>
                     }
 
