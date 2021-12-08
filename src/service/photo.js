@@ -1,6 +1,7 @@
 
 export async function getAllPhotos() {
-    console.log('get all photos enteres')
+    console.log('get all photos enteres');
+    try{
     let response = await fetch('http://localhost:3030/', {
         method: 'GET',
         headers: {
@@ -8,8 +9,12 @@ export async function getAllPhotos() {
         },
     })
     let data = await response.json();
-    console.log(data)
+    console.log('data ->' , data);
     return data;
+}
+catch(err) {
+    throw err;
+}
 
 }
 

@@ -1,26 +1,39 @@
 import { useState, useEffect } from 'react';
 import { getAllPhotos } from '../../service/photo';
 import PhotoCard from './PhotoCard';
+import TopUser from './TopUser';
 import { Link } from 'react-router-dom';
 import './Home.css';
 import { useContext } from 'react';
 import AuthContext from '../../contexts/AuthContext';
+import { getRanklist } from '../../service/auth';
 
 const Home = () => {
     const { userInfo, addAllPhotosInfo } = useContext(AuthContext);
     const isUser = Boolean(userInfo.username.length)
     const [photos, setPhotos] = useState([]);
+    const [ranklist, setRanklist] = useState([]);
 
     useEffect(() => {
         getAllPhotos()
             .then(result => {
                 setPhotos(result);
-                
+
                 console.log('result -> ', result)
-                addAllPhotosInfo(result);
+
+                   addAllPhotosInfo(result);
             });
-            window.scrollTo(0, 0);
+
+        window.scrollTo(0, 0);
     }, []);
+
+    useEffect(() => {
+        getRanklist()
+            .then(res => {
+                setRanklist(res);
+            })
+            .catch(err => console.log(err))
+    }, [])
 
     return (
         <div className="main-content">
@@ -36,22 +49,15 @@ const Home = () => {
 
                 </div>
             </main>
-            <aside className={isUser ? 'aside-user' : 'aside-guest' }>
+            <aside className={isUser ? 'aside-user' : 'aside-guest'}>
                 <div className="top-users">
                     <h1>Top rated users:</h1>
                     <ul>
-                        <li>
-                            <i className="fas fa-trophy"></i>
-                            <Link to="#">user 1</Link>
-                        </li>
-                        <li>
-                            <i className="fas fa-trophy"></i>
-                            <Link to="#">user 2</Link>
-                        </li>
-                        <li>
-                            <i className="fas fa-trophy"></i>
-                            <Link to="#">user 3</Link>
-                        </li>
+                        {
+                            ranklist
+                                ? ranklist.map(x => <TopUser key={x[0]} topUser={x[1]} id={x[0]} />)
+                                : <h4> Top users loading....</h4>
+                        }
                     </ul>
                 </div>
 

@@ -1,5 +1,5 @@
 
-export async function createUser(data){
+export async function createUser(data) {
     const res = await fetch('http://localhost:3030/auth/register', {
         method: 'POST',
         headers: {
@@ -13,58 +13,74 @@ export async function createUser(data){
 }
 
 export async function getUser(data) {
-          const res = await fetch('http://localhost:3030/auth/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            credentials: "same-origin",
-            body: JSON.stringify(data),
-        })
+    const res = await fetch('http://localhost:3030/auth/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        credentials: "same-origin",
+        body: JSON.stringify(data),
+    })
 
-        const resData = await res.json();
-        console.log('res.ok -> ', res.ok)
-        console.log('resData -> ', resData);
-        if (res.ok) {
-            return resData;
-        }else {
-            throw resData;
-        }
-    
-    
+    const resData = await res.json();
+    console.log('res.ok -> ', res.ok)
+    console.log('resData -> ', resData);
+    if (res.ok) {
+        return resData;
+    } else {
+        throw resData;
+    }
+
+
 }
 
-export async function getUserById(id){
- //   console.log('getUserEntered');
- //   console.log('ID received -> ', id);
+export async function getUserById(id) {
+
     const res = await fetch('http://localhost:3030/auth/getUserById', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         credentials: "same-origin",
-        body: JSON.stringify({id})
+        body: JSON.stringify({ id })
     });
-    
+
     const resData = await res.json();
- //   console.log('resData -> ', resData)
     if (res.ok) {
         return resData;
-    }else {
+    } else {
         throw resData;
-        
+
     }
 }
 
-export async function logout(){
+export async function getRanklist() {
+    console.log('ranklist entered')
+    try{
+    const res = await fetch('http://localhost:3030/auth/ranklist');
+    const resData = await res.json();
+    console.log('all users -> ', resData);
+    if (res.ok) {
+        return resData;
+    } else {
+        throw resData;
+    }
+    }
+    catch(err){
+        throw err;
+    }
+    
+}
+
+export async function logout() {
     console.log('logout entered');
     const res = await fetch('http://localhost:3030/auth/logout', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            credentials: "same-origin"
-        });
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        credentials: "same-origin"
+    });
 
-        console.log('logoute res -> ', res);
+    console.log('logoute res -> ', res);
 }
