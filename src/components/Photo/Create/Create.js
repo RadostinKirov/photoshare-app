@@ -31,7 +31,7 @@ const Create = () => {
 
                 <input type="text" name="imageUrl" placeholder="ImageURL" />
 
-                <input type="submit" className="add-btn" />
+                <input type="submit" className="add-btn" value="SUBMIT" />
 
                 <div className="photographer-right">
                     <img src="./images/photographer3.png" alt="" />
