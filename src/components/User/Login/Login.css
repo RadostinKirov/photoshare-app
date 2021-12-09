@@ -1,0 +1,73 @@
+.username-login {
+    position: relative;
+}
+
+.password-login {
+    position: relative;
+}
+
+.user-inactive {
+    color: lightgrey;
+}
+
+.input-inactive {
+    position: absolute;
+    left: -30px;
+    top: 35px;
+    color: lightgrey;
+    font-size: 20px;
+}
+
+.input-invalid {
+    position: absolute;
+    left: -30px;
+    top: 35px;
+    color: red;
+    font-size: 20px;
+}
+
+
+.input-valid {
+    position: absolute;
+    left: -30px;
+    top: 35px;
+    color: rgb(73, 191, 76);
+    font-size: 20px;
+}
+
+.icon-valid {
+    position: absolute;
+    left: -30px;
+    top: 35px;
+    color: rgb(73, 191, 76);
+    font-size: 20px;
+}
+
+.icon-invalid {
+    position: absolute;
+    left: -30px;
+    top: 35px;
+    color:red;
+    font-size: 20px;
+}
+
+.login-form input {
+    margin-bottom: 0;
+}
+
+.login-form p {
+    margin-top: 0;
+}
+
+.active {
+    display: none;
+}
+
+.inactive {
+    position: absolute;
+    top: 33px;
+    right: -120px;
+    display: block;
+    color: red;
+   
+}

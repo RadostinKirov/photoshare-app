@@ -15,7 +15,7 @@ const Profile = () => {
     const totalPhotos = usersPhotos.length;
     const totalLikes = usersPhotos.reduce((acc, obj) => acc + obj.likes, 0);
     const mostLiked = usersPhotos.sort((a, b) => (b.likes - a.likes))[0];
-   
+
     const [owner, setOwner] = useState('Loadind name...');
     let [isVisible, setIsVisible] = useState(false);
     useEffect(() => {
@@ -47,14 +47,21 @@ const Profile = () => {
                     </li>
 
                 </ul>
-                <Link onClick={onShowHideClick} to='' className="all-photos-btn">{!isVisible ? 'See all photos' : 'Hide all Photos'}</Link>
+                {mostLiked
+                    ? <Link onClick={onShowHideClick} to='' className="all-photos-btn">{!isVisible ? 'See all photos' : 'Hide all Photos'}</Link>
+                    : ''
+                }
+
             </main>
             <aside>
                 <h1>BEST PHOTO</h1>
                 <div className="best-photo">
-                    <Link to={`/details/${mostLiked._id}`}>
-                        <img src={mostLiked.imageUrl} alt="" />
-                    </Link>
+                    {mostLiked
+                        ? <Link to={`/details/${mostLiked._id}`}>
+                            <img src={mostLiked.imageUrl} alt="" />
+                        </Link>
+                        : <h3 className="no-photos">No Photos uploaded yet</h3>
+                    }
                 </div>
             </aside>
             <div className="user-photos">
