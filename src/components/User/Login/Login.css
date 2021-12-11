@@ -63,6 +63,7 @@
     display: none;
 }
 
+
 .inactive {
     position: absolute;
     bottom: -22px;
@@ -83,6 +84,7 @@
     position: absolute;
     top: -35px;
     box-shadow: 0px 0px 8px black;
+    transition: 2s;
 }
 
 .error p {

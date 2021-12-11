@@ -14,11 +14,11 @@ const Login = () => {
 
     let [passIconClass, setPassIconClass] = useState('input-inactive');
     let [userIconClass, setUserIconClass] = useState('input-inactive');
-    let [serverError, setSeverError] = useState(null);
+    let [error, setError] = useState(null);
 
-    useEffect( () => {
+    useEffect(() => {
 
-    }, [serverError]);
+    }, [error]);
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
@@ -26,20 +26,31 @@ const Login = () => {
         const userForm = data.get('username');
         const passForm = data.get('password');
         const userFormData = { "username": userForm, "password": passForm };
-       
-    
+        
+        if (!userForm || !passForm) {
+            if (!userForm || userForm.length<5) {
+                console.log('input-invalid')
+                setUserIconClass('input-invalid');
+            }
+            if (!passForm || passForm.length<6) {
+                console.log('input-invalid');
+                setPassIconClass('icon-invalid');
+            }
+
+            return;
+        }
 
         getUser(userFormData)
             .then(res => {
                 console.log('res entered')
                 addUserInfo(res);
-                setSeverError(null);
+                setError(null);
                 navigate('/');
             })
             .catch(err => {
-                setSeverError(err);
+                setError(err);
                 setTimeout(() => {
-                    setSeverError('');
+                    setError('');
                 }, 5000);
                 console.log('Server Error -> ', err);
             });
@@ -78,9 +89,9 @@ const Login = () => {
     return (
         <div className="login">
             <form className="login-form" onSubmit={onSubmitHandler}>
-                <div className={serverError ? 'error' : 'active'}>
-                    <p>{serverError}</p>
-                    </div>
+                <div className={error ? 'error' : 'active'}>
+                    <p>{error}</p>
+                </div>
                 <h1>Login</h1>
 
                 <div className="username-login">
