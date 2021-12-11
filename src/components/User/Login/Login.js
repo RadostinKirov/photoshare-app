@@ -3,16 +3,22 @@ import { useNavigate } from 'react-router-dom';
 import { useContext, useState } from 'react';
 import AuthContext from '../../../contexts/AuthContext';
 import './Login.css'
+import { useEffect } from 'react/cjs/react.development';
 
 
 const Login = () => {
     const { addUserInfo } = useContext(AuthContext);
     let [isPassValid, setIsPassValid] = useState('false');
-    let [isUserValid , setIsUserValid] = useState('false');
+    let [isUserValid, setIsUserValid] = useState('false');
     const navigate = useNavigate();
-  
+
     let [passIconClass, setPassIconClass] = useState('input-inactive');
     let [userIconClass, setUserIconClass] = useState('input-inactive');
+    let [serverError, setSeverError] = useState(null);
+
+    useEffect( () => {
+
+    }, [serverError]);
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
@@ -20,51 +26,61 @@ const Login = () => {
         const userForm = data.get('username');
         const passForm = data.get('password');
         const userFormData = { "username": userForm, "password": passForm };
-
+       
+    
 
         getUser(userFormData)
             .then(res => {
                 console.log('res entered')
                 addUserInfo(res);
-                navigate('/')
+                setSeverError(null);
+                navigate('/');
             })
-            .catch(err => console.log('Server Error -> ', err)
-            );
+            .catch(err => {
+                setSeverError(err);
+                setTimeout(() => {
+                    setSeverError('');
+                }, 5000);
+                console.log('Server Error -> ', err);
+            });
 
 
     }
 
     const onChangeUsername = (e) => {
         const username = e.target.value
-        
-        if(username.length >= 5){
+
+        if (username.length >= 5) {
             setIsUserValid(true);
             setUserIconClass('input-valid');
-        }else {
+        } else {
             setIsUserValid(false);
-           setUserIconClass('input-invalid');
- 
-         }
-       
-     }
-
-   const onChangePass = (e) => {
-       const pass = e.target.value
-       console.log()
-       if(pass.length >= 6){
-           setIsPassValid(true);
-           setPassIconClass('input-valid');
-       }else {
-           setIsPassValid(false);
-          setPassIconClass('input-invalid');
+            setUserIconClass('input-invalid');
 
         }
-      
+
+    }
+
+    const onChangePass = (e) => {
+        const pass = e.target.value
+        console.log()
+        if (pass.length >= 6) {
+            setIsPassValid(true);
+            setPassIconClass('input-valid');
+        } else {
+            setIsPassValid(false);
+            setPassIconClass('input-invalid');
+
+        }
+
     }
 
     return (
         <div className="login">
             <form className="login-form" onSubmit={onSubmitHandler}>
+                <div className={serverError ? 'error' : 'active'}>
+                    <p>{serverError}</p>
+                    </div>
                 <h1>Login</h1>
 
                 <div className="username-login">

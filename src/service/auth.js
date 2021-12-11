@@ -13,24 +13,35 @@ export async function createUser(data) {
 }
 
 export async function getUser(data) {
-    const res = await fetch('http://localhost:3030/auth/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        credentials: "same-origin",
-        body: JSON.stringify(data),
-    })
 
-    const resData = await res.json();
-    console.log('res.ok -> ', res.ok)
-    console.log('resData -> ', resData);
-    if (res.ok) {
-        return resData;
-    } else {
-        throw resData;
+
+    try {
+        const res = await fetch('http://localhost:3030/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: "same-origin",
+            body: JSON.stringify(data),
+        })
+
+        const resData = await res.json();
+        console.log('res.ok -> ', res.ok)
+        console.log('resData -> ', resData);
+        if (res.ok) {
+            return resData;
+        } else {
+            throw resData;
+        }
+    } catch (err) {
+        console.log('catched err -> ', err.message);
+        if (err.message == "Failed to fetch") {
+            throw ("Server not responding");
+        } else {
+            const errMsg = err.message ? err.message : err;
+            throw errMsg;
+        }
     }
-
 
 }
 
@@ -56,20 +67,20 @@ export async function getUserById(id) {
 
 export async function getRanklist() {
     console.log('ranklist entered')
-    try{
-    const res = await fetch('http://localhost:3030/auth/ranklist');
-    const resData = await res.json();
-    console.log('all users -> ', resData);
-    if (res.ok) {
-        return resData;
-    } else {
-        throw resData;
+    try {
+        const res = await fetch('http://localhost:3030/auth/ranklist');
+        const resData = await res.json();
+        console.log('all users -> ', resData);
+        if (res.ok) {
+            return resData;
+        } else {
+            throw resData;
+        }
     }
-    }
-    catch(err){
+    catch (err) {
         throw err;
     }
-    
+
 }
 
 export async function logout() {
