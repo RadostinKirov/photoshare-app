@@ -1,0 +1,38 @@
+.input-inactive {
+    position: absolute;
+    left: -30px;
+    top: 35px;
+    color: lightgrey;
+    font-size: 20px;
+}
+
+.username-register, .password-register, .repass-register {
+    position: relative;
+}
+
+.register i {
+    position: absolute;
+}
+
+.register-active {
+    display: none;
+}
+
+
+.register-inactive {
+    position: absolute;
+    bottom: -22px;
+    left: 10px;
+    display: block;
+    color: red;
+    z-index: 2;
+   
+}
+
+.register-input-inactive {
+    position: absolute;
+    left: -30px;
+    top: 35px;
+    color: lightgrey;
+    font-size: 20px;
+}

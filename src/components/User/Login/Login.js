@@ -12,8 +12,8 @@ const Login = () => {
     let [isUserValid, setIsUserValid] = useState('false');
     const navigate = useNavigate();
 
-    let [passIconClass, setPassIconClass] = useState('input-inactive');
-    let [userIconClass, setUserIconClass] = useState('input-inactive');
+    let [passIconClass, setPassIconClass] = useState('login-input-inactive');
+    let [userIconClass, setUserIconClass] = useState('login-input-inactive');
     let [error, setError] = useState(null);
 
     useEffect(() => {
@@ -89,20 +89,20 @@ const Login = () => {
     return (
         <div className="login">
             <form className="login-form" onSubmit={onSubmitHandler}>
-                <div className={error ? 'error' : 'active'}>
+                <div className={error ? 'error' : 'login-active'}>
                     <p>{error}</p>
                 </div>
                 <h1>Login</h1>
 
                 <div className="username-login">
                     <input onChange={onChangeUsername} type="text" name="username" placeholder="username" />
-                    <p className={isUserValid ? 'active' : 'inactive'}>min 5 symbols</p>
+                    <p className={isUserValid ? 'login-active' : 'login-inactive'}>min 5 symbols</p>
                     <i className={userIconClass + " fas fa-user"}></i>
                 </div>
 
                 <div className="password-login">
                     <input onChange={onChangePass} type="password" name="password" placeholder="password" />
-                    <p className={isPassValid && true ? 'active' : 'inactive'}>min 6 symbols</p>
+                    <p className={isPassValid && true ? 'login-active' : 'login-inactive'}>min 6 symbols</p>
                     <i className={passIconClass + " fas fa-key"}></i>
                 </div>
 

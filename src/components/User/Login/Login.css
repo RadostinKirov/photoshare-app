@@ -10,7 +10,7 @@
     color: lightgrey;
 }
 
-.input-inactive {
+.login-input-inactive {
     position: absolute;
     left: -30px;
     top: 35px;
@@ -59,12 +59,12 @@
     margin-top: 0;
 }
 
-.active {
+.login-active {
     display: none;
 }
 
 
-.inactive {
+.login-inactive {
     position: absolute;
     bottom: -22px;
     left: 10px;
