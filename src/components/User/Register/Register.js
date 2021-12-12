@@ -16,6 +16,7 @@ const Register = () => {
     let [pass, setPass] = useState(null);
     let [repass, setRepass] = useState(null);
     let [isRepassValid, setIsRepassValid] = useState('false');
+    let [error, setError] = useState(null);
 
     let [passwordsMatch, setPasswordsMatch] = useState(true);
 
@@ -30,6 +31,15 @@ const Register = () => {
                 console.log('res -> ', res);
                 addUserInfo(res);
                 navigate('/');
+            })
+            .catch(err => {
+                console.log('test')
+                setError(err);
+                
+                setTimeout(() => {
+                    setError('');
+                }, 5000);
+                user = 'dasd'
             });
     }
 
@@ -111,10 +121,15 @@ const Register = () => {
     return (
         <div className="register">
             <form action="" className="register-form" onSubmit={onSubmitHandler}>
+
+                <div className={error ? 'error' : 'login-active'}>
+                    <p>{error}</p>
+                </div>
+
                 <h1>Register</h1>
 
                 <div className="username-register">
-                    <input onChange={onChangeUsername} type="text" name="username" placeholder="username" />
+                    <input onChange={onChangeUsername} type="text" name="username" placeholder="username"  />
                     <p className={isUserValid ? 'register-active' : 'register-inactive'}>min 5 symbols</p>
                     <i className={userIconClass + " fas fa-user"}></i>
                 </div>

@@ -6,10 +6,57 @@
     position: relative;
 }
 
+.login i {
+    position: absolute;
+    left: -30px;
+    top: 35px;
+    font-size: 20px;
+}
+
 .user-inactive {
     color: lightgrey;
 }
 
+.user-fail {
+    color:red;
+    display: block;
+}
+
+.user-ok {
+    color: rgb(73, 191, 76);
+    display: block;
+}
+
+
+.login-form input {
+    margin-bottom: 20;
+}
+
+.username-login p, .password-login p {
+    margin-top: 0;
+    position: absolute;
+    bottom: -22px;
+    left: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+.pass-inactive {
+    color: lightgrey;
+}
+
+.pass-fail {
+    color:red;
+    display: block;
+}
+
+.pass-ok {
+    color: rgb(73, 191, 76);
+    display: block;
+}
+------------------------------
 .login-input-inactive {
     position: absolute;
     left: -30px;
@@ -51,13 +98,6 @@
     font-size: 20px;
 }
 
-.login-form input {
-    margin-bottom: 20;
-}
-
-.login-form p {
-    margin-top: 0;
-}
 
 .login-active {
     display: none;

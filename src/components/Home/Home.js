@@ -20,10 +20,8 @@ const Home = () => {
         getAllPhotos()
             .then(result => {
                 setPhotos(result);
-
                 console.log('result -> ', result)
-
-                   addAllPhotosInfo(result);
+                 addAllPhotosInfo(result);
             });
 
         window.scrollTo(0, 0);

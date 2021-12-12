@@ -1,15 +1,31 @@
 
 export async function createUser(data) {
-    const res = await fetch('http://localhost:3030/auth/register', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    });
 
-    const resData = await res.json();
-    return resData;
+    try {
+        const res = await fetch('http://localhost:3030/auth/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+
+        const resData = await res.json();
+        console.log('res -> ', res.ok)
+        if (res.ok) {
+            return resData;
+        } else {
+            throw resData;
+        }
+    } catch (err) {
+        console.log('catched err -> ', await err);
+        if (err.message == "Failed to fetch") {
+            throw ("Server not responding");
+        } else {
+            const errMsg = err.message ? err.message : err;
+            throw errMsg;
+        }
+    }
 }
 
 export async function getUser(data) {
@@ -34,7 +50,7 @@ export async function getUser(data) {
             throw resData;
         }
     } catch (err) {
-        console.log('catched err -> ', err.message);
+        console.log('catched err -> ', err);
         if (err.message == "Failed to fetch") {
             throw ("Server not responding");
         } else {
