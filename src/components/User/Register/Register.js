@@ -7,9 +7,9 @@ import './Register.css';
 const Register = () => {
     const navigate = useNavigate();
     const { addUserInfo } = useContext(AuthContext);
-    let [username, setUsername] = useState('');
-    let [password, setPassword] = useState('');
-    let [repeatPassword, setRepeatPassword] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [repeatPassword, setRepeatPassword] = useState('');
     const [userClass, setUserClass] = useState('user-inactive');
     const [passClass, setPassClass] = useState('pass-inactive');
     const [repassClass, setRepassClass] = useState('repass-inactive');
@@ -18,42 +18,9 @@ const Register = () => {
     const [isMatch, setIsMatch] = useState(true);
     const [isUserValid, setIsUserValid] = useState(false);
     const [isPassValid, setIsPassValid] = useState(false)
+    const [error, setError] = useState(null);
 
 
-
-    let [userIconClass, setUserIconClass] = useState('register-input-inactive');
-    let [passIconClass, setPassIconClass] = useState('register-input-inactive');
-    let [repassIconClass, setRepassIconClass] = useState('register-input-inactive');
-
-    let [pass, setPass] = useState(null);
-    let [repass, setRepass] = useState(null);
-    let [isRepassValid, setIsRepassValid] = useState('false');
-    let [error, setError] = useState(null);
-
-    let [passwordsMatch, setPasswordsMatch] = useState(true);
-
-    // const onSubmitHandler = (e) => {
-    //     e.preventDefault();
-    //     let data = new FormData(e.currentTarget);
-    //     const user = data.get('username');
-    //     const pass = data.get('password');
-    //     const userData = { "username": user, "password": pass };
-    //     createUser(userData)
-    //         .then(res => {
-    //             console.log('res -> ', res);
-    //             addUserInfo(res);
-    //             navigate('/');
-    //         })
-    //         .catch(err => {
-    //             console.log('test')
-    //             setError(err);
-
-    //             setTimeout(() => {
-    //                 setError('');
-    //             }, 5000);
-    //             user = 'dasd'
-    //         });
-    // }
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
