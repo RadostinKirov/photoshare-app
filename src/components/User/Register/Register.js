@@ -7,12 +7,24 @@ import './Register.css';
 const Register = () => {
     const navigate = useNavigate();
     const { addUserInfo } = useContext(AuthContext);
+    let [username, setUsername] = useState('');
+    let [password, setPassword] = useState('');
+    let [repeatPassword, setRepeatPassword] = useState('');
+    const [userClass, setUserClass] = useState('user-inactive');
+    const [passClass, setPassClass] = useState('pass-inactive');
+    const [repassClass, setRepassClass] = useState('repass-inactive');
+    const [passErrorValidation, setPassErrorValidation] = useState('');
+    const [repassErrorValidation, setRepassErrorValidation] = useState('');
+    const [isMatch, setIsMatch] = useState(true);
+    const [isUserValid, setIsUserValid] = useState(false);
+    const [isPassValid, setIsPassValid] = useState(false)
+
+
 
     let [userIconClass, setUserIconClass] = useState('register-input-inactive');
     let [passIconClass, setPassIconClass] = useState('register-input-inactive');
     let [repassIconClass, setRepassIconClass] = useState('register-input-inactive');
-    let [isUserValid, setIsUserValid] = useState('false');
-    let [isPassValid, setIsPassValid] = useState('false');
+
     let [pass, setPass] = useState(null);
     let [repass, setRepass] = useState(null);
     let [isRepassValid, setIsRepassValid] = useState('false');
@@ -20,13 +32,43 @@ const Register = () => {
 
     let [passwordsMatch, setPasswordsMatch] = useState(true);
 
+    // const onSubmitHandler = (e) => {
+    //     e.preventDefault();
+    //     let data = new FormData(e.currentTarget);
+    //     const user = data.get('username');
+    //     const pass = data.get('password');
+    //     const userData = { "username": user, "password": pass };
+    //     createUser(userData)
+    //         .then(res => {
+    //             console.log('res -> ', res);
+    //             addUserInfo(res);
+    //             navigate('/');
+    //         })
+    //         .catch(err => {
+    //             console.log('test')
+    //             setError(err);
+
+    //             setTimeout(() => {
+    //                 setError('');
+    //             }, 5000);
+    //             user = 'dasd'
+    //         });
+    // }
+
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        let data = new FormData(e.currentTarget);
-        const user = data.get('username');
-        const pass = data.get('password');
-        const userData = { "username": user, "password": pass };
-        createUser(userData)
+
+        let formData = new FormData(e.currentTarget);
+        const username = formData.get('username');
+        const password = formData.get('password');
+        const registerData = { username, password };
+
+        if (!isUserValid || !isPassValid) {
+            console.log('wrong input info');
+            return;
+        }
+
+        createUser(registerData)
             .then(res => {
                 console.log('res -> ', res);
                 addUserInfo(res);
@@ -35,86 +77,91 @@ const Register = () => {
             .catch(err => {
                 console.log('test')
                 setError(err);
-                
+
                 setTimeout(() => {
                     setError('');
                 }, 5000);
-                user = 'dasd'
+              
             });
+
+
+
     }
 
     const onChangeUsername = (e) => {
-        const user = e.target.value;
-        console.log(user);
-
-        if (user.length >= 5) {
-            setIsUserValid(true);
-            setUserIconClass('input-valid');
-        } else {
+        const usernameInput = e.target.value;
+        setUsername(usernameInput);
+        if (usernameInput.length < 5) {
+            setUserClass('user-fail');
             setIsUserValid(false);
-            setUserIconClass('input-invalid');
+            console.log('isUserValid -> ', isUserValid);
+        } else {
+            setUserClass('user-ok');
+            setIsUserValid(true);
+            console.log('isUserValid -> ', isUserValid);
+
         }
+
     }
 
-    const onChangePass = (e) => {
-        const pass = e.target.value;
+    const onChangePassword = (e) => {
+        const passwordInput = e.target.value;
+        setPassword(passwordInput);
 
-        setPass('repass ->', pass);
-
-        if (pass.length < 6) {
+        if (passwordInput.length < 6) {
+            setPassClass('pass-fail');
+            setPassErrorValidation('min 6 symbols');
+            setIsMatch(true);
             setIsPassValid(false);
-            setPassIconClass('input-invalid');
         } else {
-            console.log('pass -> ', pass);
-            console.log('repass -> ', repass);
-            setIsPassValid(true);
-            setPass(pass);
-            setPassIconClass('input-valid');
-            if (repass) {
-                if (pass == repass) {
-
-                    setPasswordsMatch(true);
-
-                    setPassIconClass('input-valid');
-                    setRepassIconClass('input-valid');
-                    console.log('if entered')
+            setPassClass('pass-ok');
+            setPassErrorValidation('');
+            setIsPassValid(false);
+            if (repeatPassword) {
+                if (repeatPassword != passwordInput) {
+                    console.log('passwords dont match')
+                    setPassClass('pass-fail');
+                    setRepassClass('repass-fail');
+                    setIsMatch(false);
                 } else {
-                    setPasswordsMatch(false);
-                    setPassIconClass('input-invalid');
-                    setRepassIconClass('input-invalid');
-                    // setPasswordsMatch(false);
-                    console.log('else entered')
+                    console.log('both passwords match')
+                    setPassClass('pass-ok');
+                    setRepassClass('repass-ok');
+                    setIsMatch(true);
+                    setIsPassValid(true);
                 }
             }
         }
-
     };
 
-    const onChangeRepass = (e) => {
-        const repass = e.target.value;
+    const onChangeRepassword = (e) => {
+        const repassInput = e.target.value;
+        setRepeatPassword(repassInput);
 
-        if (repass.length < 6) {
-            setPasswordsMatch(true);
-            setIsRepassValid(false);
-            setRepassIconClass('input-invalid');
+        if (repassInput.length < 6) {
+            setRepassClass('repass-fail');
+            setRepassErrorValidation('min 6 symbols');
+            setIsMatch(true);
+            setIsPassValid(false);
         } else {
-            setIsRepassValid(true);
-            setRepass(repass);
-            setRepassIconClass('input-valid');
-            console.log('pass -> ', pass);
-            console.log('repass -> ', repass);
-            if (pass && pass == repass) {
-                setPasswordsMatch(true);
-                setPassIconClass('input-valid');
-                setRepassIconClass('input-valid');
-                console.log('passwords match!!!')
-            } else {
-                setPasswordsMatch(false);
-                setPassIconClass('input-invalid');
-                setRepassIconClass('input-invalid');
-                console.log('passwords dont match')
-
+            setRepassClass('repass-ok');
+            setRepassErrorValidation('');
+            setIsPassValid(false);
+            if (password) {
+                if (password != repassInput) {
+                    console.log('passwords dont match')
+                    setRepassClass('repass-fail');
+                    setPassClass('pass-fail');
+                    setIsMatch(false);
+                } else {
+                    console.log('both passwords match')
+                    setRepassClass('repass-ok');
+                    setPassClass('pass-ok');
+                    setIsMatch(true);
+                    setIsPassValid(true);
+                }
             }
+
         }
     };
 
@@ -122,30 +169,34 @@ const Register = () => {
         <div className="register">
             <form action="" className="register-form" onSubmit={onSubmitHandler}>
 
-                <div className={error ? 'error' : 'login-active'}>
+                <div className={error ? 'error' : 'hidden'}>
                     <p>{error}</p>
                 </div>
 
                 <h1>Register</h1>
 
                 <div className="username-register">
-                    <input onChange={onChangeUsername} type="text" name="username" placeholder="username"  />
-                    <p className={isUserValid ? 'register-active' : 'register-inactive'}>min 5 symbols</p>
-                    <i className={userIconClass + " fas fa-user"}></i>
+                    <input onChange={onChangeUsername} value={username} type="text" name="username" placeholder="username" />
+                    <p className={userClass == 'user-inactive' || userClass == 'user-ok' ? 'hidden' : userClass}>min 5 symbols</p>
+                    <i className={userClass + " fas fa-user"}></i>
                 </div>
 
                 <div className="password-register">
-                    <input onChange={onChangePass} type="password" name="password" placeholder="Password" />
-                    <p className={isPassValid ? 'register-active' : 'register-inactive'}>min 6 symbols</p>
-                    <p className={passwordsMatch ? 'register-active' : 'register-inactive'}>both passwords don't match</p>
-                    <i className={passIconClass + " fas fa-key"}></i>
+                    <input onChange={onChangePassword} value={password} type="password" name="password" placeholder="Password" />
+
+                    <p className={passClass == 'pass-inactive' || passClass == 'pass-ok' ? 'hidden' : passClass}>{passErrorValidation}</p>
+                    <p className={!isMatch ? 'match-err-shown' : 'hidden'}>both passwords don't match</p>
+
+                    <i className={passClass + " fas fa-key"}></i>
                 </div>
 
                 <div className="repass-register">
-                    <input onChange={onChangeRepass} type="password" name="rePass" placeholder="Repeat Password" />
-                    <p className={isRepassValid ? 'register-active' : 'register-inactive'}>min 6 symbols</p>
-                    <p className={passwordsMatch ? 'register-active' : 'register-inactive'}>both passwords don't match</p>
-                    <i className={repassIconClass + " fas fa-key"}></i>
+                    <input onChange={onChangeRepassword} value={repeatPassword} type="password" name="rePass" placeholder="Repeat Password" />
+
+                    <p className={repassClass == 'repass-inactive' || repassClass == 'repass-ok' ? 'hidden' : repassClass}>{repassErrorValidation}</p>
+                    <p className={!isMatch ? 'match-err-shown' : 'hidden'}>both passwords don't match</p>
+
+                    <i className={repassClass + " fas fa-key"}></i>
                 </div>
 
                 <input type="submit" className="register-btn" />
@@ -157,4 +208,5 @@ const Register = () => {
         </div>
     )
 }
+
 export default Register;

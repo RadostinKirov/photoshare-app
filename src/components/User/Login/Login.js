@@ -15,7 +15,6 @@ const Login = () => {
     const [error, setError] = useState('');
     const [userClass, setUserClass] = useState('user-inactive');
     const [passClass, setPassClass] = useState('pass-inactive');
-    const [dataValid, setDataValid] = useState(false);
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
@@ -31,21 +30,17 @@ const Login = () => {
         console.log("passwordFormData.length -> ", passwordFormData.length);
 
         if (!usernameFormdata || usernameFormdata.length < 5) {
-
             console.log('user-invalid');
             setUserClass('user-fail');
-            setDataValid(false);
 
         }
 
         if (!passwordFormData || passwordFormData.length < 6) {
             console.log('password-invalid');
             setPassClass('pass-fail');
-            setDataValid(false);
         }
 
         if (usernameFormdata.length >= 5 && passwordFormData.length >= 6) {
-            setDataValid(true);
 
             getUser(loginData)
                 .then(res => {
@@ -73,7 +68,6 @@ const Login = () => {
 
     }
 
-
     const onChangeUsername = (e) => {
         let usernameInput = e.target.value;
 
@@ -97,6 +91,7 @@ const Login = () => {
         }
         setPassword(passwordInput);
     }
+
     return (
         <div className="login">
             <form className="login-form" onSubmit={onSubmitHandler}>

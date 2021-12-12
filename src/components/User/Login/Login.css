@@ -56,67 +56,11 @@
     color: rgb(73, 191, 76);
     display: block;
 }
-------------------------------
-.login-input-inactive {
-    position: absolute;
-    left: -30px;
-    top: 35px;
-    color: lightgrey;
-    font-size: 20px;
-}
 
-.input-invalid {
-    position: absolute;
-    left: -30px;
-    top: 35px;
-    color: red;
-    font-size: 20px;
-}
-
-
-.input-valid {
-    position: absolute;
-    left: -30px;
-    top: 35px;
-    color: rgb(73, 191, 76);
-    font-size: 20px;
-}
-
-.icon-valid {
-    position: absolute;
-    left: -30px;
-    top: 35px;
-    color: rgb(73, 191, 76);
-    font-size: 20px;
-}
-
-.icon-invalid {
-    position: absolute;
-    left: -30px;
-    top: 35px;
-    color:red;
-    font-size: 20px;
-}
-
-
-.login-active {
-    display: none;
-}
-
-
-.login-inactive {
-    position: absolute;
-    bottom: -22px;
-    left: 10px;
-    display: block;
-    color: red;
-   
-}
-
-.error {
+.login .error {
     display: block;
     border: 2px solid #f80303;
-    padding: 20px 50px;
+    padding: 10px 50px;
     background: red;
     color: white;
     border-radius: 24px;
@@ -125,8 +69,4 @@
     top: -35px;
     box-shadow: 0px 0px 8px black;
     transition: 2s;
-}
-
-.error p {
-    margin: 0;
 }
