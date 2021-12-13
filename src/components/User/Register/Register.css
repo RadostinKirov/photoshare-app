@@ -45,13 +45,18 @@
     left: 10px;
 }
 
-.password-register p, .repass-register p{
-      margin-top: 0;
+/* .password-register p, .repass-register p{
+      margin: 0;
+
+} */
+
+.register .error-container {
+    border: 1px solid black;
     position: absolute;
     bottom: -22px;
-    left: 10px;  
+    left: 0;
+    z-index: 2;
 }
-
 .match-err-shown {
     display: block;
     color: red;

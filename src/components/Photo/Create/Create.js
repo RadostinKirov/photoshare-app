@@ -28,9 +28,6 @@ const Create = () => {
         const token = userInfo.token;
         const photoData = { title, description, imageUrl, owner, token };
 
-     
-console.log(Boolean(title), Boolean(description), Boolean(imageUrl));
-
 
         if (!title || !description || !imageUrl) {
             setError('Please fill all fields');
@@ -39,26 +36,29 @@ console.log(Boolean(title), Boolean(description), Boolean(imageUrl));
             }, 4000);
         }
 
-        
-        if(!title){
+
+        if (!title) {
             setTitleClass('title-fail');
         }
 
-        if(!description){
+        if (!description) {
             setDescriptionClass('title-fail');
         }
 
-        if(!imageUrl){
+        if (!imageUrl) {
             setImageUrlClass('imageUrl-fail');
         }
 
+        if (title && description && imageUrl) {
+            createPhoto(photoData)
+                .then(navigate('/'))
+                .catch(err => {
+                    console.log(err)
+                });
+
+        }
 
 
-        // createPhoto(photoData)
-        //     .then(navigate('/'))
-        //     .catch(err => {
-        //         console.log(err)
-        //     });
     }
 
     const onChangeTitle = (e) => {
