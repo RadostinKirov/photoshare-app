@@ -50,10 +50,19 @@ const Create = () => {
         }
 
         if (title && description && imageUrl) {
+            console.log('fetch')
             createPhoto(photoData)
-                .then(navigate('/'))
+                .then(res => {
+                    console.log('resssss received -> ', res);
+                    navigate('/');
+                })
                 .catch(err => {
-                    console.log(err)
+                    console.log('errrrrr catched -> ', err);
+                    setError(err);
+                    setTimeout(() => {
+                        setError('');
+                    }, 5000);
+                    return;
                 });
 
         }
@@ -124,7 +133,7 @@ const Create = () => {
                     <p className={imageUrlClass == 'imageUrl-inactive' || imageUrlClass == 'imageUrl-ok' ? 'valid' : 'invalid'}>URL should start with http://... or https://...</p>
                 </div>
 
-                <input type="submit" className="add-btn" value="SUBMIT" />
+                <input type="submit" className="add-btn" value="Add Photo" />
 
                 <div className="photographer-right">
                     <img src="./images/photographer3.png" alt="" />
