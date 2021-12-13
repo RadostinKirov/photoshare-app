@@ -1,12 +1,22 @@
-import { useParams, useNavigate } from "react-router-dom";
-import { useContext } from "react/cjs/react.development";
-import AuthContext from "../../../contexts/AuthContext";
-import { editPhoto } from "../../../service/photo";
+import { editPhoto } from '../../../service/photo'
+import { useNavigate, useParams } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import AuthContext from '../../../contexts/AuthContext';
+import './Edit.css'
+
 
 const Edit = () => {
-    const { id } = useParams();
     const { photoInfo, userInfo } = useContext(AuthContext);
     const navigate = useNavigate();
+    const { id } = useParams();
+    const [title, setTitle] = useState(photoInfo.title);
+    const [description, setDescription] = useState(photoInfo.description);
+    const [imageUrl, setImageUrl] = useState(photoInfo.imageUrl);
+    const [titleClass, setTitleClass] = useState('title-inactive');
+    const [descriptionClass, setDescriptionClass] = useState('description-inactive');
+    const [imageUrlClass, setImageUrlClass] = useState('imageUrl-inactive');
+
+    const [error, setError] = useState('');
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
@@ -16,33 +26,123 @@ const Edit = () => {
         const imageUrl = data.get('imageUrl');
         const owner = userInfo.id;
         const token = userInfo.token;
-        const photoId = id;
+        const photoId= id;
         const photoData = { title, description, imageUrl, owner, token, photoId };
-        console.log(photoData, id)
-        editPhoto(photoData, id)
-            .then(navigate(`/details/${id}`))
-            .catch(err => console.log(err));
+                        
+
+        if (!title || !description || !imageUrl) {
+            setError('Please fill all fields');
+            setTimeout(() => {
+                setError('');
+            }, 4000);
+        }
+
+
+        if (!title) {
+            setTitleClass('title-fail');
+        }
+
+        if (!description) {
+            setDescriptionClass('title-fail');
+        }
+
+        if (!imageUrl) {
+            setImageUrlClass('imageUrl-fail');
+        }
+
+        if (title && description && imageUrl) {
+            console.log('fetch')
+
+            editPhoto(photoData, id)
+                .then(res => {
+                    navigate(`/details/${id}`);
+                })
+                .catch(err => {
+                    setError(err);
+                    setTimeout(() => {
+                        setError('');
+                    }, 5000);
+                    return;
+
+                });
+
+
+        }
+
+
+    }
+
+    const onChangeTitle = (e) => {
+        const titleInput = e.target.value;
+        setTitle(titleInput);
+
+        if (titleInput.length < 5) {
+
+            setTitleClass('title-fail');
+        } else {
+            setTitleClass('title-ok');
+        }
+
+    }
+
+    const onChangeDescription = (e) => {
+        const descriptionInput = e.target.value;
+        setDescription(descriptionInput);
+
+        if (descriptionInput.length < 20) {
+            setDescriptionClass('description-fail');
+        } else {
+            setDescriptionClass('description-ok');
+        }
+    }
+
+    const onChangeImageUrl = (e) => {
+        const imageUrlInput = e.target.value;
+        setImageUrl(imageUrlInput);
+
+        if (imageUrlInput.startsWith('http://') || imageUrlInput.startsWith('https://')) {
+            setImageUrlClass('imageUrl-ok');
+        } else {
+            setImageUrlClass('imageUrl-fail');
+        }
     }
 
     return (
         <div className="edit">
             <form className="edit-form" onSubmit={onSubmitHandler}>
+
+                <div className={error ? 'error' : 'hidden'}>
+                    <p>{error}</p>
+                </div>
+
                 <h1>Edit Photo</h1>
 
-                <input type="text" name="title" placeholder="Title" defaultValue={photoInfo.title} />
+                <div className="title-container">
+                    <label>Title</label>
+                    <input onChange={onChangeTitle} value={title} type="text" name="title" placeholder="Title" />
+                    <p className={titleClass == 'title-inactive' || titleClass == 'title-ok' ? 'valid' : 'invalid'}>min 5 symbols</p>
+                </div>
 
-                <textarea placeholder="Description" defaultValue={photoInfo.description} name="description" id="" cols="30" rows="10"></textarea>
+                <div className="description-container">
+                    <label>Description</label>
+                    <textarea onChange={onChangeDescription} value={description} placeholder="Description" name="description" id="" cols="30" rows="10" ></textarea>
+                    <p className={descriptionClass == 'description-inactive' || descriptionClass == 'description-ok' ? 'valid' : 'invalid'}>min 20 symbols</p>
+                </div>
 
-                <input type="text" name="imageUrl" placeholder="ImageURL" defaultValue={photoInfo.imageUrl} />
+                <div className="imageUrl-container">
+                    <label>Image URL</label>
+                    <input onChange={onChangeImageUrl} value={imageUrl} type="text" name="imageUrl" placeholder="ImageURL" placeholder="http..." />
+                    <p className={imageUrlClass == 'imageUrl-inactive' || imageUrlClass == 'imageUrl-ok' ? 'valid' : 'invalid'}>URL should start with http://... or https://...</p>
+                </div>
 
-                <input type="submit" className="add-btn" value="EDIT" />
+                <input type="submit" className="add-btn" value="Edit Photo" />
 
                 <div className="photographer-right">
-                    <img src="../images/photographer3.png" alt="right photographer" />
+                    <img src="./images/photographer3.png" alt="" />
                 </div>
 
                 <div className="photographer-left">
-                    <img src="../images/photographer2.png" alt="left photographer" />
+                    <img src="./images/photographer2.png" alt="" />
                 </div>
             </form>
         </div>

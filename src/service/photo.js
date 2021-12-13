@@ -58,21 +58,32 @@ export async function createPhoto(data) {
 }
 
 export async function editPhoto(data, id) {
-    const resData = await fetch(`http://localhost:3030/photo/edit/${id}`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    });
 
-    const result = resData.json();
-    if (resData.ok) {
-        console.log('OK', result)
-        return result;
-    } else {
-        console.log('ERROR', result)
-        throw result;
+    try {
+        const resData = await fetch(`http://localhost:3030/photo/edit/${id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+
+        const result = await resData.json();
+        console.log('fetch result -> ', result)
+        if (resData.ok) {
+            console.log('OK', result)
+            return result;
+        } else {
+            console.log('ERROR', result)
+            throw result;
+        }
+    } catch (err) {
+        if (err.message == "Failed to fetch") {
+            throw ("Server not responding");
+        } else {
+            const errMsg = err.message ? err.message : err;
+            throw errMsg;
+        }
     }
 }
 
