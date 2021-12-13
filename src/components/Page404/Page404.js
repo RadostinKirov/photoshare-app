@@ -7,7 +7,7 @@ const Page404 = () => {
                     <img src="./images/404-sad.png"  alt="sad face"/>
                 </div>
                 <div>
-                    <Link to="#" className="btn-home" >Home</Link>
+                    <Link to="/" className="btn-home" >Home</Link>
                 </div>
             </section>
         </div>

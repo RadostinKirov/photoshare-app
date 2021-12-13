@@ -61,9 +61,9 @@ const Home = () => {
                     </ul>
                 </div>
 
-                <div className="top-commented">
-                    <h1>Most commented photo:</h1>
-                    <div className="top-commented-img">
+                <div className="top-liked">
+                    <h1>Most liked photo:</h1>
+                    <div className="top-liked-img">
                         <Link to={`/details/${mostLiked._id}`}>
                             <div className="top-img">
                                 <img src={mostLiked.imageUrl} alt="" />

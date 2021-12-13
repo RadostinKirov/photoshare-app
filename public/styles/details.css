@@ -58,69 +58,7 @@
     font-size: 40px;
 }
 
-.details .comments {
-    background-color: white;
-     width: 60%;
-     margin: auto;
-     box-shadow: 0px 0px 15px rgb(71, 71, 71);
-     border-radius: 10px;
-     margin: 50px auto;
-}
 
-.details .comments h2 {
-    text-align: center;
-}
-
-.details .no-comments {
-    font-size: 25px;
-    margin: 0;
-}
-
-.details .username {
-    font-weight: bold;
-  
-}
-
-.details .comment {
-    padding-left: 20px;
-}
-
-.details p {
-    margin: 0;
-}
-
-.details .comments form {
-    width: 90%;
-    margin: 40px auto;
-    display: flex;
-    justify-content: space-around;
-}
-
-.details .input-field {
-    width: 300px;
-    height: 40px;
-    border-radius: 5px;
-}
-
-.comment-container {
-    border-bottom: 4px solid rgb(73, 191, 76);
-    border-top: 4px solid rgb(73, 191, 76);
-}
-
-.details .add-comment-btn{
-    background-color: rgb(73, 191, 76);
-    color: white;
-    border-radius: 10px;
-    border: 2px solid rgb(73, 191, 76);
-    cursor: pointer;
-    padding: 2px 4px;
-}
-
-.details .add-comment-btn:hover{
-    border-color: black;
-    color: black;
-    transition: 0.8s;
-}
 
 .details .likes-container {
     text-align: right;

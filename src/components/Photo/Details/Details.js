@@ -7,6 +7,7 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
 import './Details.css';
+import Comments from "../../Comments/Comments";
 
 const Details = () => {
     let { userInfo, addPhotoInfo } = useContext(AuthContext);
@@ -124,21 +125,7 @@ console.log('delete clicked')
                     <span>{photo.likes}</span>
                 </div>
 
-                <section className="comments">
-                    <h2>Comments</h2>
-                    <section className="comment-container">
-                        <p className="no-comments">No comments yet</p>
-                        <p><span className="username">IvanIvanov</span>: <span className="comment">awsome pic!!!</span></p>
-                        <p><span className="username">Petar Petrov</span>: <span className="comment">I was ther , it was
-                            beutiful</span></p>
-                        <p><span className="username">Georgi Georgiev</span>: <span className="comment">My photos are much
-                            better!!!</span></p>
-                    </section>
-                    <form action="" className="add-comment">
-                        <input className="input-field" type="text" name="" id="" />
-                        <input className="add-comment-btn" type="submit" value="Add comment" />
-                    </form>
-                </section>
+                <Comments photoId={photoId} />
             </section>
         </div>
     )

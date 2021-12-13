@@ -26,9 +26,9 @@ const Header = ({ navigationChangeHandler }) => {
                     </div>
 
                     <div className={isUser ? 'show' : 'hide'}>
-                        <li><Link to="/profile" className="hello-user">hello, {userInfo.username}</Link></li>
-                        <li><Link to="/catalog">CATALOG</Link></li>
-                        <li><Link to={`/profile/${userInfo.id}`}>PROFILE</Link></li>
+                        <li><Link to={`/profile/${userInfo.id}`} className="hello-user">hello, {userInfo.username}</Link></li>
+                        <li><Link to="/home">HOME</Link></li>
+
                         <li><Link to="/create">ADD PHOTO</Link></li>
                         <li><Link to="/logout">LOGOUT</Link></li>
                     </div>
@@ -40,7 +40,7 @@ const Header = ({ navigationChangeHandler }) => {
                     <p>The best place</p>
                     <p>to share your photos!</p>
                 </div>
-                <div className={'header-buttons ' + (isUser ? 'btn-hide': 'btn-show')}>
+                <div className={'header-buttons ' + (isUser ? 'btn-hide' : 'btn-show')}>
                     <Link to="/login">LOGIN</Link>
                     <Link to="/register">REGISTER</Link>
                 </div>
