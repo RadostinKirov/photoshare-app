@@ -3,6 +3,9 @@ import { useState, useEffect, useContext } from "react";
 import AuthContext from "../../../contexts/AuthContext";
 import { deletePhoto, getPhogoById, likePhoto } from "../../../service/photo";
 import { getUserById } from '../../../service/auth';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
+
 import './Details.css';
 
 const Details = () => {
@@ -66,8 +69,28 @@ const Details = () => {
 
     const onClickDeleteHandler = (e) => {
         e.preventDefault();
-        deletePhoto(photoId)
-        .then(navigate('/'));
+console.log('delete clicked')
+        confirmAlert({
+            title: 'Delete photo',
+            message: 'Are you sure you want to do delete this photo?',
+            buttons: [
+              {
+                label: 'Yes',
+                onClick: () => {
+                    deletePhoto(photoId)
+                    .then(navigate('/'));
+                }
+              },
+              {
+                label: 'No',
+                onClick: () => navigate(`/details/${photoId}`)
+              }
+            ]
+          });
+
+
+        // deletePhoto(photoId)
+        // .then(navigate('/'));
     }
 
     const likeCheck = () => {
