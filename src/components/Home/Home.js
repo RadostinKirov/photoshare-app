@@ -64,9 +64,9 @@ const Home = () => {
                 <div className="top-liked">
                     <h1>Most liked photo:</h1>
                     <div className="top-liked-img">
-                        <Link to={`/details/${mostLiked._id}`}>
+                        <Link to={mostLiked ? `/details/${mostLiked._id}`: ''}>
                             <div className="top-img">
-                                <img src={mostLiked.imageUrl} alt="" />
+                                <img src={mostLiked? mostLiked.imageUrl : ''} alt="" />
                             </div>
                             <h3>waterfall</h3>
                         </Link>
