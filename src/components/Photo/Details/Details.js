@@ -22,6 +22,8 @@ const Details = () => {
     const [ownerID, setOwnerID] = useState('123');
     const [owner, setOwner] = useState('loading nanme...');
     const [isLiked, setIsLiked] = useState(false);
+    const [loadedComments, setLoadedComment] = useState([]);
+    const [data, setData] = useState({photoId});
 
     useEffect(() => {
         getPhogoById(photoId)
@@ -29,16 +31,15 @@ const Details = () => {
                 setPhoto(result);
                 setOwnerID(result.owner);
                 result.owner == userInfo.id ? setIsAuth(true) : setIsAuth(false);
+                console.log('result -> ', result)
+                setLoadedComment(result.comments.slice(-3));
+                setData({...data, loadedComments:result.comments.slice(-3) })
                 if (result.usersLiked.includes(userInfo.id)) {
                     setIsLiked(true);
                 };
                 addPhotoInfo(result);
 
-
-
             });
-
-
     }, []);
 
     useEffect(() => {
@@ -70,24 +71,24 @@ const Details = () => {
 
     const onClickDeleteHandler = (e) => {
         e.preventDefault();
-console.log('delete clicked')
+        console.log('delete clicked')
         confirmAlert({
             title: 'Delete photo',
             message: 'Are you sure you want to do delete this photo?',
             buttons: [
-              {
-                label: 'Yes',
-                onClick: () => {
-                    deletePhoto(photoId)
-                    .then(navigate('/'));
+                {
+                    label: 'Yes',
+                    onClick: () => {
+                        deletePhoto(photoId)
+                            .then(navigate('/'));
+                    }
+                },
+                {
+                    label: 'No',
+                    onClick: () => navigate(`/details/${photoId}`)
                 }
-              },
-              {
-                label: 'No',
-                onClick: () => navigate(`/details/${photoId}`)
-              }
             ]
-          });
+        });
 
 
         // deletePhoto(photoId)
@@ -102,6 +103,9 @@ console.log('delete clicked')
         }
     }
 
+    console.log('loaded Comments in Details -> ', loadedComments)
+
+    console.log('all data -> ', data)
     return (
         <div className="details">
             <section className="image">
@@ -125,7 +129,7 @@ console.log('delete clicked')
                     <span>{photo.likes}</span>
                 </div>
 
-                <Comments photoId={photoId} />
+                <Comments data={data} />
             </section>
         </div>
     )
