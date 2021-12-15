@@ -187,7 +187,7 @@ const Register = () => {
                     <i className={repassClass + " fas fa-key"}></i>
                 </div>
 
-                <input type="submit" className="register-btn" />
+                <input type="submit"  value="REGISTER" className="register-btn" />
                 <div className="photographer">
                     <img src="./images/photographer1.png" alt="" />
                 </div>

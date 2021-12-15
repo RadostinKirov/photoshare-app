@@ -29,8 +29,13 @@ const Comments = ({ data }) => {
         e.preventDefault();
         const data = new FormData(e.currentTarget);
         const text = data.get('comment');
+        
+      
         if (text) {
+            
             setInputText(text);
+        }else {
+            return
         }
 
         const comment = { username: userInfo.username, text }

@@ -52,7 +52,10 @@
 
 .main-content aside li {
     font-size: 30px;
-    
+}
+
+.main-content aside li a {
+    color: rgb(73, 191, 76);
 }
 
 .main-content aside li a:hover {
@@ -64,7 +67,7 @@
 
 .main-content aside .top-users a {
     text-decoration: none;
-    color: rgb(71, 71, 71);
+    color: rgb(73, 191, 76);
     font-size: 35px;
     padding-left: 10px;
 }
