@@ -2,10 +2,11 @@
 export async function getAllPhotos() {
     console.log('get all photos enteres');
     try {
-        let response = await fetch('http://localhost:3030/', {
+        let response = await fetch('https://photoshare-app-server.herokuapp.com/', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
             },
         })
         let data = await response.json();
@@ -19,10 +20,11 @@ export async function getAllPhotos() {
 }
 
 export async function getPhogoById(id) {
-    const response = await fetch(`http://localhost:3030/photo/details/${id}`, {
+    const response = await fetch(`https://photoshare-app-server.herokuapp.com/photo/details/${id}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
         },
     });
     const data = response.json();
@@ -32,10 +34,11 @@ export async function getPhogoById(id) {
 export async function createPhoto(data) {
 
     try {
-        const resData = await fetch('http://localhost:3030/photo/create', {
+        const resData = await fetch('https://photoshare-app-server.herokuapp.com/photo/create', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
             },
             body: JSON.stringify(data),
         });
@@ -60,10 +63,11 @@ export async function createPhoto(data) {
 export async function editPhoto(data, id) {
 
     try {
-        const resData = await fetch(`http://localhost:3030/photo/edit/${id}`, {
+        const resData = await fetch(`https://photoshare-app-server.herokuapp.com/photo/edit/${id}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
             },
             body: JSON.stringify(data),
         });
@@ -88,10 +92,11 @@ export async function editPhoto(data, id) {
 }
 
 export async function deletePhoto(id) {
-    const resData = await fetch(`http://localHost:3030/photo/delete/${id}`, {
+    const resData = await fetch(`https://photoshare-app-server.herokuapp.com/photo/delete/${id}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
         }
     });
 
@@ -108,10 +113,11 @@ export async function deletePhoto(id) {
 
 export async function likePhoto(data) {
     const { photoId } = data;
-    const resData = await fetch(`http://localHost:3030/photo/like/${photoId}`, {
+    const resData = await fetch(`https://photoshare-app-server.herokuapp.com/photo/like/${photoId}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
         },
         body: JSON.stringify(data),
     });
