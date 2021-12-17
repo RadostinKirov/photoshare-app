@@ -9,7 +9,8 @@ This app was built using React framework
 ## Main views and functionality
 
 ### Home Page - Guest
-
+ #### adress: /home
+  - A preview of all posted pictures is availabe 
 
 ### Home Page - Logged user
 
