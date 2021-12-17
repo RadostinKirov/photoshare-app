@@ -2,7 +2,7 @@
 export async function createUser(data) {
 
     try {
-        const res = await fetch('https://photoshare-app-server.herokuapp.com/auth/register', {
+          const res = await fetch('https://photoshare-app-server.herokuapp.com/auth/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -20,8 +20,8 @@ export async function createUser(data) {
         }
     } catch (err) {
         console.log('catched err -> ', await err);
-        if (err.message == "Failed to fetch") {
-            throw ("Server not responding");
+        if (err.message === "Failed to fetch") {
+            throw ("Server error - ", err.message);
         } else {
             const errMsg = err.message ? err.message : err;
             throw errMsg;
@@ -33,6 +33,7 @@ export async function getUser(data) {
 
 
     try {
+     
         const res = await fetch('https://photoshare-app-server.herokuapp.com/auth/login', {
             method: 'POST',
             headers: {
@@ -53,8 +54,8 @@ export async function getUser(data) {
         }
     } catch (err) {
         console.log('catched err -> ', err);
-        if (err.message == "Failed to fetch") {
-            throw ("Server not responding");
+        if (err.message === "Failed to fetch") {
+            throw ("Server error - ", err.message);
         } else {
             const errMsg = err.message ? err.message : err;
             throw errMsg;
@@ -64,6 +65,8 @@ export async function getUser(data) {
 }
 
 export async function getUserById(id) {
+console.log('getUserById entered')
+console.log('user id received -> ', id);
 
     const res = await fetch('https://photoshare-app-server.herokuapp.com/auth/getUserById', {
         method: 'POST',
@@ -87,6 +90,7 @@ export async function getUserById(id) {
 export async function getRanklist() {
     console.log('ranklist entered')
     try {
+    
            const res = await fetch('https://photoshare-app-server.herokuapp.com/auth/ranklist' , {
                 method: 'GET',
                 headers: {
@@ -113,6 +117,7 @@ export async function getRanklist() {
 
 export async function logout() {
     console.log('logout entered');
+  
     const res = await fetch('https://photoshare-app-server.herokuapp.com/auth/logout', {
         method: 'GET',
         headers: {

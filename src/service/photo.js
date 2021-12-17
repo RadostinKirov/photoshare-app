@@ -2,6 +2,7 @@
 export async function getAllPhotos() {
     console.log('get all photos enteres');
     try {
+   
         let response = await fetch('https://photoshare-app-server.herokuapp.com/', {
             method: 'GET',
             headers: {
@@ -20,6 +21,7 @@ export async function getAllPhotos() {
 }
 
 export async function getPhogoById(id) {
+ 
     const response = await fetch(`https://photoshare-app-server.herokuapp.com/photo/details/${id}`, {
         method: 'GET',
         headers: {
@@ -34,7 +36,8 @@ export async function getPhogoById(id) {
 export async function createPhoto(data) {
 
     try {
-        const resData = await fetch('https://photoshare-app-server.herokuapp.com/photo/create', {
+    
+       const resData = await fetch('https://photoshare-app-server.herokuapp.com/photo/create', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -51,8 +54,8 @@ export async function createPhoto(data) {
             throw result;
         }
     } catch (err) {
-        if (err.message == "Failed to fetch") {
-            throw ("Server not responding");
+        if (err.message === "Failed to fetch") {
+            throw ("Server error - ", err.message);
         } else {
             const errMsg = err.message ? err.message : err;
             throw errMsg;
@@ -63,6 +66,7 @@ export async function createPhoto(data) {
 export async function editPhoto(data, id) {
 
     try {
+   
         const resData = await fetch(`https://photoshare-app-server.herokuapp.com/photo/edit/${id}`, {
             method: 'POST',
             headers: {
@@ -82,8 +86,8 @@ export async function editPhoto(data, id) {
             throw result;
         }
     } catch (err) {
-        if (err.message == "Failed to fetch") {
-            throw ("Server not responding");
+        if (err.message === "Failed to fetch") {
+            throw ("Server error - ", err.message);
         } else {
             const errMsg = err.message ? err.message : err;
             throw errMsg;
@@ -92,6 +96,7 @@ export async function editPhoto(data, id) {
 }
 
 export async function deletePhoto(id) {
+   
     const resData = await fetch(`https://photoshare-app-server.herokuapp.com/photo/delete/${id}`, {
         method: 'POST',
         headers: {
@@ -113,11 +118,12 @@ export async function deletePhoto(id) {
 
 export async function likePhoto(data) {
     const { photoId } = data;
+ 
     const resData = await fetch(`https://photoshare-app-server.herokuapp.com/photo/like/${photoId}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
+            
         },
         body: JSON.stringify(data),
     });

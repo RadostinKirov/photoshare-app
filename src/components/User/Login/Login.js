@@ -104,13 +104,13 @@ const Login = () => {
 
                 <div className="username-login">
                     <input onChange={onChangeUsername} value={username} type="text" name="username" placeholder="username" />
-                    <p className={userClass == 'user-inactive' || userClass == 'user-ok' ? 'hidden' : userClass}>min 5 symbols</p>
+                    <p className={userClass === 'user-inactive' || userClass === 'user-ok' ? 'hidden' : userClass}>min 5 symbols</p>
                     <i className={userClass + " fas fa-user"}></i>
                 </div>
 
                 <div className="password-login">
                     <input onChange={onChangePassword} value={password} type="password" name="password" placeholder="password" />
-                    <p className={passClass == 'pass-inactive' || passClass == 'pass-ok' ? 'hidden' : passClass}>min 6 symbols</p>
+                    <p className={passClass === 'pass-inactive' || passClass === 'pass-ok' ? 'hidden' : passClass}>min 6 symbols</p>
                     <i className={passClass + " fas fa-key"}></i>
                 </div>
 

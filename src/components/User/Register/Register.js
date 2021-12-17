@@ -53,7 +53,7 @@ const Register = () => {
                 navigate('/');
             })
             .catch(err => {
-                if(err = 'Username is taken!'){
+                if(err === 'Username is taken!'){
                     setUserClass('user-fail');
                     setUserErrorValidation('');
                 }
@@ -102,7 +102,7 @@ const Register = () => {
             setPassErrorValidation('');
             setIsPassValid(false);
             if (repeatPassword) {
-                if (repeatPassword != passwordInput) {
+                if (repeatPassword !== passwordInput) {
                     if (repeatPassword.length >= 6) {
                         console.log('passwords dont match')
                         setPassClass('pass-fail');
@@ -134,7 +134,7 @@ const Register = () => {
             setRepassErrorValidation('');
             setIsPassValid(false);
             if (password) {
-                if (password != repassInput) {
+                if (password !== repassInput) {
                     if (password.length >= 6) {
                         console.log('passwords dont match')
                         setRepassClass('repass-fail');
@@ -165,14 +165,14 @@ const Register = () => {
 
                 <div className="username-register">
                     <input onChange={onChangeUsername} value={username} type="text" name="username" placeholder="username" />
-                    <p className={userClass == 'user-inactive' || userClass == 'user-ok' ? 'hidden' : userClass}>{userErrorValidation}</p>
+                    <p className={userClass === 'user-inactive' || userClass === 'user-ok' ? 'hidden' : userClass}>{userErrorValidation}</p>
                     <i className={userClass + " fas fa-user"}></i>
                 </div>
 
                 <div className="password-register">
                     <input onChange={onChangePassword} value={password} type="password" name="password" placeholder="Password" />
                     {/* <div className="error-container"> */}
-                    <p className={passClass == 'pass-inactive' || passClass == 'pass-ok' ? 'hidden' : passClass}>{passErrorValidation}</p>
+                    <p className={passClass === 'pass-inactive' || passClass === 'pass-ok' ? 'hidden' : passClass}>{passErrorValidation}</p>
                     <p className={!isMatch ? 'match-err-shown' : 'hidden'}>both passwords don't match</p>
                     {/* </div> */}
                     <i className={passClass + " fas fa-key"}></i>
@@ -181,7 +181,7 @@ const Register = () => {
                 <div className="repass-register">
                     <input onChange={onChangeRepassword} value={repeatPassword} type="password" name="rePass" placeholder="Repeat Password" />
                     {/* <div className="error-container"> */}
-                    <p className={repassClass == 'repass-inactive' || repassClass == 'repass-ok' ? 'hidden' : repassClass}>{repassErrorValidation}</p>
+                    <p className={repassClass === 'repass-inactive' || repassClass === 'repass-ok' ? 'hidden' : repassClass}>{repassErrorValidation}</p>
                     <p className={!isMatch ? 'match-err-shown' : 'hidden'}>both passwords don't match</p>
                     {/* </div> */}
                     <i className={repassClass + " fas fa-key"}></i>

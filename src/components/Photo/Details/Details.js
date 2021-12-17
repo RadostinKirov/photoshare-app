@@ -30,7 +30,7 @@ const Details = () => {
             .then(result => {
                 setPhoto(result);
                 setOwnerID(result.owner);
-                result.owner == userInfo.id ? setIsAuth(true) : setIsAuth(false);
+                result.owner === userInfo.id ? setIsAuth(true) : setIsAuth(false);
                 console.log('result -> ', result)
                 setLoadedComment(result.comments.slice(-3));
                 setData({...data, loadedComments:result.comments.slice(-3) })

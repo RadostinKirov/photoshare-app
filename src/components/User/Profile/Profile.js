@@ -1,28 +1,39 @@
 import AuthContext from "../../../contexts/AuthContext";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { useEffect, useState } from "react/cjs/react.development";
 import { getUserById } from "../../../service/auth";
 import PhotoCard from "../../Home/PhotoCard";
 import './Profile.css';
 
 const Profile = () => {
-    const { id: userId } = useParams();
+
+    const { id } = useParams();
+    let userId = id;
     const { allPhotos } = useContext(AuthContext);
     console.log('allophotos -> ', allPhotos);
+    console.log('profile page entered !');
+  
+   const usersPhotos = allPhotos.filter(x => x.owner === userId);
+   
+   const totalPhotos = usersPhotos.length;
+ 
+   const totalLikes = usersPhotos.reduce((acc, obj) => acc + obj.likes, 0);
 
-    const usersPhotos = allPhotos.filter(x => x.owner == userId);
-    const totalPhotos = usersPhotos.length;
-    const totalLikes = usersPhotos.reduce((acc, obj) => acc + obj.likes, 0);
-    const mostLiked = usersPhotos.sort((a, b) => (b.likes - a.likes))[0];
-
-    const [owner, setOwner] = useState('Loadind name...');
+   const mostLiked = usersPhotos.sort((a, b) => (b.likes - a.likes))[0];
+    console.log('mostLiked -> ', mostLiked);
+    const [ownerPhoto, setOwnerPhoto] = useState('Loadind name...');
+    console.log('useState done')
     let [isVisible, setIsVisible] = useState(false);
+
     useEffect(() => {
+        console.log('use effect entered')
         getUserById(userId)
-            .then(res => setOwner(res))
+            .then(res => {
+                console.log('res -> ', res);
+                setOwnerPhoto(res)
+            })
             .catch(err => console.log('Error get user by Id => ', err))
-    }, []);
+    }, [userId]);
 
 
     const onShowHideClick = (e) => {
@@ -33,7 +44,7 @@ const Profile = () => {
     console.log(mostLiked)
     return (
         <div className="profile">
-            <h1>Profile information - <span className="username">{owner}</span></h1>
+            <h1>Profile information - <span className="username">{ownerPhoto}</span></h1>
             <main>
                 <ul>
                     <li>

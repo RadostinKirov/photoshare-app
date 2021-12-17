@@ -9,7 +9,7 @@ import AuthContext from '../../contexts/AuthContext';
 import { getRanklist } from '../../service/auth';
 
 const Home = () => {
-    const { userInfo, addAllPhotosInfo, allPhotos } = useContext(AuthContext);
+    let { userInfo, addAllPhotosInfo, allPhotos } = useContext(AuthContext);
     const isUser = Boolean(userInfo.username.length)
     const [photos, setPhotos] = useState([]);
     const [ranklist, setRanklist] = useState([]);
@@ -21,7 +21,7 @@ const Home = () => {
             .then(result => {
                 setPhotos(result);
                 console.log('result -> ', result)
-                 addAllPhotosInfo(result);
+                addAllPhotosInfo(result);
             });
 
         window.scrollTo(0, 0);
@@ -64,11 +64,11 @@ const Home = () => {
                 <div className="top-liked">
                     <h1>Most liked photo:</h1>
                     <div className="top-liked-img">
-                        <Link to={mostLiked ? `/details/${mostLiked._id}`: ''}>
+                        <Link to={mostLiked ? `/details/${mostLiked._id}` : ''}>
                             <div className="top-img">
-                                <img src={mostLiked? mostLiked.imageUrl : ''} alt="" />
+                                <img src={mostLiked ? mostLiked.imageUrl : ''} alt="" />
                             </div>
-                            <h3>waterfall</h3>
+                            <h3>{mostLiked ? mostLiked.title : ''}</h3>
                         </Link>
                     </div>
                 </div>

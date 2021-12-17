@@ -118,19 +118,19 @@ const Create = () => {
                 <div className="title-container">
                     <label>Title</label>
                     <input onChange={onChangeTitle} value={title} type="text" name="title" placeholder="Title" />
-                    <p className={titleClass == 'title-inactive' || titleClass == 'title-ok' ? 'valid' : 'invalid'}>min 5 symbols</p>
+                    <p className={titleClass === 'title-inactive' || titleClass === 'title-ok' ? 'valid' : 'invalid'}>min 5 symbols</p>
                 </div>
 
                 <div className="description-container">
                     <label>Description</label>
                     <textarea onChange={onChangeDescription} value={description} placeholder="Description" name="description" id="" cols="30" rows="10" ></textarea>
-                    <p className={descriptionClass == 'description-inactive' || descriptionClass == 'description-ok' ? 'valid' : 'invalid'}>min 20 symbols</p>
+                    <p className={descriptionClass === 'description-inactive' || descriptionClass === 'description-ok' ? 'valid' : 'invalid'}>min 20 symbols</p>
                 </div>
 
                 <div className="imageUrl-container">
                     <label>Image URL</label>
-                    <input onChange={onChangeImageUrl} value={imageUrl} type="text" name="imageUrl" placeholder="ImageURL" placeholder="http..." />
-                    <p className={imageUrlClass == 'imageUrl-inactive' || imageUrlClass == 'imageUrl-ok' ? 'valid' : 'invalid'}>URL should start with http://... or https://...</p>
+                    <input onChange={onChangeImageUrl} value={imageUrl} type="text" name="imageUrl" placeholder="ImageURL" />
+                    <p className={imageUrlClass === 'imageUrl-inactive' || imageUrlClass === 'imageUrl-ok' ? 'valid' : 'invalid'}>URL should start with http://... or https://...</p>
                 </div>
 
                 <input type="submit" className="add-btn" value="Add Photo" />
