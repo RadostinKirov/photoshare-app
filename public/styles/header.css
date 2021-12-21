@@ -1,3 +1,22 @@
+@media all and (max-width:600px) {
+    header {
+       display: flex;
+       flex-direction: column;  
+    }
+
+    header .show {
+        flex-wrap: wrap;
+    }
+
+  
+ }
+
+    header ul :nth-child(1){
+       
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
 header {
     display: flex;
     justify-content: space-between;

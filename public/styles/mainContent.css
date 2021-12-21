@@ -1,3 +1,11 @@
+@media all and (max-width:600px) {
+    .main-content {
+        display: flex;
+        flex-direction: column-reverse;
+        
+    }
+}
+
 .main-content {
     margin: 40px 20px;
     display: flex;
@@ -28,6 +36,8 @@
     width: 100%;
     height: auto;
     max-height: 200px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 .img-card h3 {
@@ -101,7 +111,7 @@
 }
 
 .top-liked .top-img {
-    width: 100%;
+      width: 100%;
 }
 
 .top-liked img {

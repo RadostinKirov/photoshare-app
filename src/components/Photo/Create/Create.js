@@ -14,7 +14,10 @@ const Create = () => {
     const [imageUrl, setImageUrl] = useState('');
     const [titleClass, setTitleClass] = useState('title-inactive');
     const [descriptionClass, setDescriptionClass] = useState('description-inactive');
-    const [imageUrlClass, setImageUrlClass] = useState('imageUrl-inactive')
+    const [imageUrlClass, setImageUrlClass] = useState('imageUrl-inactive');
+    const [isTitleValid, setIsTitleValid] = useState(false);
+    const [isDescriptionValid, setIsDescriptionValid] = useState(false);
+    const [isImageUrlValid, setIsImageUrlValid] = useState(false)
 
     const [error, setError] = useState('');
 
@@ -37,19 +40,19 @@ const Create = () => {
         }
 
 
-        if (!title) {
+        if (!title || !isTitleValid ) {
             setTitleClass('title-fail');
         }
 
-        if (!description) {
+        if (!description || !isDescriptionValid) {
             setDescriptionClass('title-fail');
         }
 
-        if (!imageUrl) {
+        if (!imageUrl || !isImageUrlValid) {
             setImageUrlClass('imageUrl-fail');
         }
 
-        if (title && description && imageUrl) {
+        if (title && isTitleValid && description && isDescriptionValid && imageUrl && isImageUrlValid) {
             console.log('fetch')
             createPhoto(photoData)
                 .then(res => {
@@ -77,8 +80,10 @@ const Create = () => {
         if (titleInput.length < 5) {
 
             setTitleClass('title-fail');
+            setIsTitleValid(false);
         } else {
             setTitleClass('title-ok');
+            setIsTitleValid(true);
         }
 
     }
@@ -89,8 +94,10 @@ const Create = () => {
 
         if (descriptionInput.length < 20) {
             setDescriptionClass('description-fail');
+            setIsDescriptionValid(false);
         } else {
             setDescriptionClass('description-ok');
+            setIsDescriptionValid(true);
         }
     }
 
@@ -100,8 +107,10 @@ const Create = () => {
 
         if (imageUrlInput.startsWith('http://') || imageUrlInput.startsWith('https://')) {
             setImageUrlClass('imageUrl-ok');
+            setIsImageUrlValid(true);
         } else {
             setImageUrlClass('imageUrl-fail');
+            setIsImageUrlValid(false);
         }
     }
 
